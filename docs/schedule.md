@@ -43,4 +43,17 @@
 
 # Create an Action
 
-TK
+* Go to GitHub repo
+* Go to the actions tab
+* Explain this is where the action happens
+* Click "Setup a workflow yourself" button
+* Commit it with any edits
+* Go the "Actions" tab and watch it run
+* Open it up and show people the interface, explaining what's happening
+* Pull the code to make some edits
+* Changing `on` setting to be scheduled on a cron and also have workflow_dispatch
+* Remove existing steps
+* Add the install Python step with minimal configuration
+* Add a step that runs our notebook with jupyter-execute
+* Commit and push
+* Run the action manually with a workflow_dispatch

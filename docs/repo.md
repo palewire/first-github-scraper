@@ -43,4 +43,11 @@
 
 # Create a repository
 
-TK
+* Sign in to GitHub
+* Create a blank new repository
+* Open your terminal
+* Create/move to a Code directory
+* Clone it to your computer
+* `cd` into the code directory
+* Install the dependencies (pipenv install jupyterlab, bs4)
+* Commit the Pipfile and push to github

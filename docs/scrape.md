@@ -43,4 +43,12 @@
 
 # Scrape data
 
-TK
+* Go get the scraper from the other IRE class
+* Download it into your repo
+* Read it briefly and explain in broad terms what it does
+* Start Jupyter
+* Run the notebook manually
+* Kill Jupyter
+* Run the notebook from the terminal
+* Commit the data and notebook to the repo
+* Push it to GitHub
