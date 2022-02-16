@@ -1,0 +1,4 @@
+sphinx
+sphinx-autobuild
+sphinx-multitoc-numbering
+myst-parser
