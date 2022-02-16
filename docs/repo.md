@@ -43,6 +43,8 @@
 
 # Create a repository
 
+![github logo](./_static/github.png)
+
 * Sign in to GitHub
 * Create a blank new repository
 * Open your terminal
