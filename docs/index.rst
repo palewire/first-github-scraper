@@ -66,4 +66,9 @@ Table of contents
     :name: mastertoc
     :numbered:
 
+    repo
+    scrape
+    schedule
+    commit
+    notify
     about
