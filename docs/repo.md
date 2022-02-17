@@ -49,7 +49,47 @@
 * Create a blank new repository
 * Open your terminal
 * Create/move to a Code directory
+
+```bash
+mkdir Code
+```
+
+```bash
+cd Code
+```
+
 * Clone it to your computer
+
+```bash
+gh clone palewire/bens-first-github-scraper
+```
+
 * `cd` into the code directory
+
+```bash
+cd bens-first-github-scraper
+```
+
 * Install the dependencies (pipenv install jupyterlab, bs4)
+
+```bash
+pipenv install jupyterlab requests bs4
+```
+
 * Commit the Pipfile and push to github
+
+```bash
+git status
+```
+
+```bash
+git add .
+```
+
+```bash
+git commit -m "First commit"
+```
+
+```bash
+git push origin main
+```
