@@ -43,7 +43,13 @@
 
 # Create a repository
 
-![github logo](./_static/github.png)
+The first step is to visit [github.com](https://www.github.com).
+
+![github.com](_static/repo-github.png)
+
+If you have an account, you should [log in](https://github.com/login). If you don’t have an account, you'll need to [make one](https://github.com/signup). Once that's done GitHub will take you to [your personal homepage](https://github.com/).
+
+![signed in](_static/repo-signin.png)
 
 * Sign in to GitHub
 * Create a blank new repository
