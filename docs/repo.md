@@ -43,6 +43,10 @@
 
 # Create a repository
 
+This chapter will walk you through how to make a repository hosted by GitHub that holds code you can edit on your local computer.
+
+## Getting started on GitHub
+
 The first step is to visit [github.com](https://www.github.com).
 
 ![github.com](_static/repo-github.png)
@@ -96,6 +100,24 @@ cd Code
 
 This is where we'll clone a copy of your repository, which we'll edit locally and then push back up to GitHub.
 
+There are numerous methods for cloning code, covered in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). This tutorial will demonstration how to use the [`gh`](https://cli.github.com/) command-line utility. If you don't have it installed, visit [cli.github.com/](https://cli.github.com/) and follow the instructions there.
+
+You can verify you have it by executing the following command, which should print out the version you have installed.
+
+```bash
+gh --version
+```
+
+The output should look something like this:
+
+```bash
+gh version 2.5.1 (2022-02-15)
+https://github.com/cli/cli/releases/tag/v2.5.1
+```
+
+```{note}
+If you get an error instead, open a fresh terminal and try again. Still not there? Revisit [cli.github.com](https://cli.github.com) to make sure you've followed all the necessary steps.
+```
 
 * Clone it to your computer
 
