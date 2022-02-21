@@ -250,8 +250,8 @@ git commit -m "First commit"
 If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. Then run the `commit` command above again.
 
 ```bash
-$ git config --global user.email "your@email.com"
-$ git config --global user.name "your name"
+git config --global user.email "your@email.com"
+git config --global user.name "your name"
 ```
 
 Finally, push your commit up to GitHub.
