@@ -47,15 +47,15 @@
 First GitHub Scraper
 ####################
 
-A step-by-step introduction to free, automated web scraping with GitHub’s powerful Actions framework.
+A step-by-step introduction to free, automated web scraping with GitHub’s powerful `Actions <https://github.com/features/actions>`_ framework.
 
 You will learn how to:
 
-* Create a GitHub repository to store your code online
-* Write just enough Python to scrape of a simple data file
+* Create a GitHub repository to store your code
+* Use Python to scrape data from the web
 * Configure GitHub Actions to schedule the scrape
-* Log the results to the repository to make it publicly accessible
-* Send a Slack notification when new data is logged
+* Automatically log the results to the repository
+* Send a Slack notification when new data arrive
 
 Table of contents
 #################
