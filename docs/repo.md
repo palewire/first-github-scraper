@@ -196,13 +196,15 @@ bs4 = "*"
 
 ## Save to GitHub
 
-Now we'll log our work with git’s version control system, which carefully tracks the changes to every file in your repository. We can see the changes git has noticed by running the status command.
+Now we'll log our work with [`git`](https://en.wikipedia.org/wiki/Git), a command-line tool that allows us to carefully track changes files in our repository. It is the open-source technology at the heart of GitHub’s social network and publishing system.
+
+The first command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
 
 ```bash
 git status
 ```
 
-That will list out the `Pipfile` and `Pipfile.lock` we've added to the repository. The next step is to officially add the files to your repository for tracking with git's `add` command.
+Run it and your terminal should print out the `Pipfile` and `Pipfile.lock` we've added to the repository. The next step is to officially add the files to your repository for tracking with git’s [`add`](https://git-scm.com/docs/git-add) command.
 
 ```bash
 git add Pipfile
@@ -210,21 +212,25 @@ git add Pipfile.lock
 ```
 
 ```{note}
-You can add all of the files in your repository by running a wildcard command like `git add .`
+You can add all of the files in your repository by adding a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) to the end of your command, `git add .`
 ```
 
-Log its creation with Git's `commit` command. You can include a personalized message after the `-m` flag.
+Log the addition of your new files with git’s [`commit`](https://git-scm.com/docs/git-commit) command. You should include a summary of your work after the `-m` flag.
 
 ```bash
 git commit -m "First commit"
 ```
 
-If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. Then run the `commit` command above again.
+````{note}
+If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. 
 
 ```bash
 git config --global user.email "your@email.com"
 git config --global user.name "your name"
 ```
+
+Then run the `commit` command above again.
+````
 
 Finally, push your commit up to GitHub.
 
