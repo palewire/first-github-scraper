@@ -10,7 +10,7 @@ master_doc = "index"
 
 project = 'First GitHub Scraper'
 year = datetime.now().year
-copyright = f'{year}'
+copyright = f'{year} Iris Lee, Aadit Tambe and Ben Welsh'
 
 exclude_patterns = ["_build"]
 
