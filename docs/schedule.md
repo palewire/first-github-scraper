@@ -223,7 +223,7 @@ jobs:
     - uses: actions/checkout@v2
 ```
 
-Now that we have Python 3 and all the requirements installed, let's run the Python code, just like you would from the terminal.
+Now that we have Python 3 and all the requirements installed, let's run the code, just like we would from the terminal.
 
 ```
 name: Automated scrape
@@ -248,7 +248,7 @@ jobs:
       run: jupyter execute scrape.ipynb
 ```
 
-Let's add a step to commit our changes after running the scraper, and push them.
+Let's add a step to commit our changes after running the scraper, and push those changes.
 
 ```
 name: Automated scrape
