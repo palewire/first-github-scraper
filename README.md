@@ -1,6 +1,6 @@
 An introduction to free, automated web scraping with GitHub’s powerful new Actions framework
 
-Published at [palewi.re/docs/first-github-scraper/](https://palewi.re/docs/first-github-scraper/)
+Published at [palewi.re/docs/first-github-scraper](https://palewi.re/docs/first-github-scraper/)
 
 ## Getting started
 
