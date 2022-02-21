@@ -45,10 +45,6 @@
 
 This chapter will walk you through how to make a repository hosted by GitHub that holds code you can edit on your local computer.
 
-.. contents:: Sections
-    :depth: 1
-    :local:
-
 ## Get started on GitHub
 
 The first step is to visit [github.com](https://www.github.com).
