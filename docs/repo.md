@@ -5,6 +5,11 @@
 
 This chapter will walk you through how to make a repository hosted by GitHub that holds code you can edit on your local computer.
 
+```{contents} Sections
+  :depth: 1
+  :local:
+```
+
 ## Get started on GitHub
 
 The first step is to visit [github.com](https://www.github.com).
@@ -178,7 +183,7 @@ bs4 = "*"
 
 `Pipfile.lock` has a more complicated, nested structure that specifies the exact version of your project's direct dependencies along with all their sub-dependencies.
 
-## Commit your work with GitHub
+## Save to GitHub
 
 Now we'll log our work with git’s version control system, which carefully tracks the changes to every file in your repository. We can see the changes git has noticed by running the status command.
 
