@@ -129,33 +129,37 @@ cd my-first-github-scraper
 
 Our web scraper will depend on a set of Python tools that we’ll need to install before we can run the code. They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data out of HTML. 
 
-By default, Python's third-party packages are all installed in a shared folder somewhere in the depths of your computer. Unless they are told otherwise, every Python project on your computer will draw from this common pool of programs.
+By default, Python's third-party packages are all installed in a shared folder somewhere in the depths of your computer. Unless told otherwise, every Python project will draw from this common pool of programs.
 
-This approach is fine for your first experiments with Python, but it quickly falls apart when you start to get serious about coding.
+That approach is fine for your first experiments with Python, but it quickly falls apart when you start to get serious about coding.
 
-For instance, say you develop a web application today with [Flask](https://palletsprojects.com/p/flask/) version 1.1. What if, a year from now, you want to start a new project and use a newer version of Flask? Your old app is still running and may requires occasional patches, but you may not have time to re-write all of your old code to make it compatible with the latest version.
+For instance, say you develop a web application today with [Flask](https://palletsprojects.com/p/flask/) version 1.1. What if, a year from now, you want to start a new project and use a newer version of Flask? Your old app is still running and may requires occasional patches, but you may not have time to rewrite your old code to make it compatible with the latest version.
 
 Open-source projects are changing every day and such conflicts are common, especially when you factor in the sub-dependencies of your project’s direct dependencies, as well as the sub-dependencies of those sub-dependencies.
 
-Programmers solve this problem by creating a [virtual environment](https://docs.python.org/3/tutorial/venv.html) for each project, which isolates the code into discrete, independent containers that do not rely on the global environment.
+Programmers solve this problem by creating a [virtual environment](https://docs.python.org/3/tutorial/venv.html) for each project, which isolates the code into a discrete, independent container that does not rely on the global environment.
 
-Strictly speaking, working within a virtual environment is not required. At first, it might even feel like a hassle. But in the long run, you will be glad you did it. And you don’t have to take our word for it, you can read discussions on [StackOverflow](https://conda.io/docs/index.html) and [Reddit](https://www.reddit.com/r/Python/comments/2qq1d9/should_i_always_use_virtualenv/).
+Strictly speaking, working within a virtual environment is not required. At first, it might even feel like a hassle but in the long run you will be glad you did it. 
 
-There are several different ways to run a virtual environment. In this tutorial, we will take advantage of [pipenv](https://pipenv.kennethreitz.org/en/latest/), a widely used tool that is recommended by leaders in the Python community.
+```{note}
+You don’t have to take our word for it, you can read discussions on [StackOverflow](https://conda.io/docs/index.html) and [Reddit](https://www.reddit.com/r/Python/comments/2qq1d9/should_i_always_use_virtualenv/).
+```
 
-Like the commands we've already learned, pipenv is executed with your computer's command-line interface. You can verify it’s there by typing the following into your terminal:
+There are several different ways to run a virtual environment. In this tutorial, we will take advantage of [`pipenv`](https://pipenv.kennethreitz.org/en/latest/), a widely used tool that is recommended by leaders in the Python community.
+
+Like the commands we've already learned, `pipenv` is executed with your computer’s command-line interface. You can verify it’s there by typing the following into your terminal:
 
 ```bash
 pipenv --version
 ```
 
-If you have it installed, you should see the terminal respond with the version on your machine.
+If you have it installed, you should see the terminal respond with the version on your machine. That will look something like this:
 
 ```bash
 pipenv, version 2021.11.23
 ```
 
-If you get an error that says pipenv isn’t present, you will need to install it.
+If you get an error that says `pipenv` isn’t present, you will need to install it.
 
 If you are on a Mac, pipenv’s maintainers [recommend](https://pipenv.kennethreitz.org/en/latest/install/#homebrew-installation-of-pipenv) installing via the [Homebrew](https://brew.sh/) package manager, like so:
 
@@ -179,10 +183,14 @@ pipenv --version
 
 ## Install Python tools
 
-Now let's pipenv to use and install our Python packages. We can add them to our project's virtual environment by typing their names after pipenv’s `install` command. Save yourself some hassle; Copy and paste it.
+Now let's use `pipenv` to install our Python packages. We can add them to our project's virtual environment by typing their names after the `install` command.
 
 ```bash
 pipenv install jupyterlab requests bs4
+```
+
+```{note}
+Save yourself some hassle; Copy and paste the command. There’s no shame. It‘s the best way to avoid typos.
 ```
 
 When you invoke Pipenv's `install` command, it checks for an existing virtual environment connected to your project’s directory. Finding none, it creates one, then installs your packages into it.
