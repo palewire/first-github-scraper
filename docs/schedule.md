@@ -5,6 +5,11 @@
 
 This chapter will walk you through how to create a GitHub Action that executes a scraper on a schedule.
 
+```{contents} Sections
+  :depth: 1
+  :local:
+```
+
 ## Getting started with Actions on GitHub
 
 Navigate back to the GitHub repo and click on the "Actions" tab. This page will display a log of the Action we configure.
