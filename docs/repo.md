@@ -24,9 +24,9 @@ Click the green button in upper-left corner to create a [new code repository](ht
 
 ![new repo button](_static/repo-new-button.png)
 
-On the next page, fill in a name for your repository. Something like `my-first-github-scraper` will work, but you can name it anything you like.
+On the next page, fill in a name for your repository. Something like `my-first-github-scraper` will work, but you can name it anything.
 
-Make sure the repo is public — which ensures your scraper will run for free — and then hit the big green button at the bottom of the page.
+Make sure the repo is public, which ensures your scraper will run for free. Then hit the green button at the bottom of the page.
 
 ![make new repo](_static/repo-new-repo.png)
 
@@ -34,40 +34,43 @@ Make sure the repo is public — which ensures your scraper will run for free �
 
 Whether you know about it or not, there should be a way to open a window and directly issue commands to your operating system. Different operating systems give this tool slightly different names, but they all have some form of it.
 
-On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Other people will call this the “command line.”
+On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Other people will call it the “command line.”
 
-On Windows, we recommend you install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and select the Ubuntu distribution from the Windows Store. This will give you access to a generic open-source terminal without all the complications and quirks introduced by Windows. On MacOS, the standard terminal app will work fine.
+This is the tool we’ll use to make a copy of your repository on your computer. Depending on your operating system and personal preferences, open up a terminal program.
 
-Depending on your operating system and personal preferences, open up a terminal program. It will start you off in your computer’s home directory, just like your file explorer. Enter the following command and press enter to see all of the folders there now.
-
-```bash
-ls
+```{note}
+If you're a Windows user, we recommend you avoid the standard command line provided by the operating system. Instead, you'd be well served by the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), which will create a development environment better suited for open-source software work. We recommend you install the Ubuntu distribution from the Windows Store. This will give you access to a generic terminal without all the complications and quirks of Windows.
 ```
 
-Now let’s check where we are in our computer's file system. For this we'll use a command called [pwd](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your location in the file system, something like `/Users/palewire/`.
+Once you have your terminal open, it will start you off in your computer’s home directory, much like your file explorer. Let’s verify where we are using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your location in the file system, something like `/Users/palewire/`, your home directory.
 
 ```bash
 pwd
 ```
 
+Next let’s enter the [`ls`](https://en.wikipedia.org/wiki/Ls) command and press enter to see all of the folders there now. It should print out the same list of folders you can see in your home directory via the file explorer.
 
-Use the [mkdir](https://en.wikipedia.org/wiki/Mkdir) command to create a new directory for your code. In the same style as the Desktop, Documents and Downloads folders included by most operating system, we will name this folder Code.
+```bash
+ls
+```
+
+Our first task is to create a folder to store our code. Use the [`mkdir`](https://en.wikipedia.org/wiki/Mkdir) command to create a new directory in the same style as the Desktop, Documents and Downloads folders included by most operating systems. We will name this folder `Code`. To verify it worked, open the file explorer and navigate to your home folder.
 
 ```bash
 mkdir Code
 ```
 
-To verify that worked, you can open in your file explorer and navigate to your home folder. Now jump into the Code directory, which is the same as double clicking on a folder to enter it in your filesystem navigator.
+Now jump into the Code directory, which is the same as double clicking on a folder in your file explorer.
 
 ```bash
 cd Code
 ```
 
-This is where we'll clone a copy of your repository, which we'll edit locally and then push back up to GitHub.
+This is the location where we'll download a copy of your repository.
 
-There are numerous methods for cloning code, covered in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). This tutorial will demonstration how to use the [`gh`](https://cli.github.com/) command-line utility. If you don't have it installed, visit [cli.github.com/](https://cli.github.com/) and follow the instructions there.
+There are numerous methods for cloning code, covered in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). This tutorial will demonstration how to use the [`gh`](https://cli.github.com/) command-line utility. If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
 
-You can verify you have it by executing the following command, which should print out the version you have installed.
+You can verify you’re ready by executing the following command, which should print out the version of `gh` you have installed.
 
 ```bash
 gh --version
@@ -81,16 +84,16 @@ https://github.com/cli/cli/releases/tag/v2.5.1
 ```
 
 ```{note}
-If you get an error instead, open a fresh terminal and try again. Still not there? Revisit [cli.github.com](https://cli.github.com) to make sure you've followed all the necessary steps.
+If you get an error instead, open a fresh terminal and try again. If it’s still not working, revisit [cli.github.com](https://cli.github.com) to make sure you've followed all the necessary steps.
 ```
 
-Now you should use `gh` to login to GitHub, which will verify that you have permission to edit your repositories.
+Use `gh` to login to GitHub, which will verify that your computer has permission to access and edit the repositories owned by your account.
 
 ```bash
 gh auth login
 ```
 
-After you authenticate, it’s time to clone the repository we made. You'll want to edit the code below by inserting your user name and repository.
+After you authenticate, it’s time to clone the new repository we created. Edit the code below by inserting your user name and repository. Then run it.
 
 ```bash
 gh clone <your-username>/<your-repo>
@@ -102,7 +105,13 @@ In my case, the command looks like this:
 gh repo clone palewire/my-first-github-scraper
 ```
 
-After clone completes, move into that directory.
+After clone completes, run the `ls` command again. You should see a new folder created by `gh`.
+
+```bash
+ls
+```
+
+Use `cd` to move into the directory, where we can begin work.
 
 ```bash
 cd my-first-github-scraper
@@ -110,23 +119,23 @@ cd my-first-github-scraper
 
 ## Install pipenv
 
-Our web scraper depends on a set of Python tools that we'll need to install before we can run the code. They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data out of HTML. 
+Our web scraper will depend on a set of Python tools that we’ll need to install before we can run the code. They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data out of HTML. 
 
-By default, Python's third-party packages are all installed in a shared "global" folder somewhere in the depths of your computer. By default, every Python project on your computer draws from this same set of installed programs.
+By default, Python's third-party packages are all installed in a shared folder somewhere in the depths of your computer. Unless they are told otherwise, every Python project on your computer will draw from this common pool of programs.
 
 This approach is fine for your first experiments with Python, but it quickly falls apart when you start to get serious about coding.
 
-For instance, say you develop a web application today with [Flask](https://palletsprojects.com/p/flask/) version 1.1. What if, a year from now, you want to start a new project and use a newer version of Flask? Your old app is still live and requires occasional patches, but you don't have time to re-write all of your old to make it compatible with the latest version of Flask.
+For instance, say you develop a web application today with [Flask](https://palletsprojects.com/p/flask/) version 1.1. What if, a year from now, you want to start a new project and use a newer version of Flask? Your old app is still running and may requires occasional patches, but you may not have time to re-write all of your old code to make it compatible with the latest version.
 
 Open-source projects are changing every day and such conflicts are common, especially when you factor in the sub-dependencies of your project’s direct dependencies, as well as the sub-dependencies of those sub-dependencies.
 
-Programmers solve this problem by creating a [virtual environment](https://docs.python.org/3/tutorial/venv.html) for each project that isolates them into discrete, independent containers that do not rely on code in the global environment.
+Programmers solve this problem by creating a [virtual environment](https://docs.python.org/3/tutorial/venv.html) for each project, which isolates the code into discrete, independent containers that do not rely on the global environment.
 
-Strictly speaking, working within a virtual environment is not required. At first, it might even feel like a hassle. But in the long run, you will be glad you did it. And you don’t have to take my word for it, you can read discussions on [StackOverflow](https://conda.io/docs/index.html) and [Reddit](https://www.reddit.com/r/Python/comments/2qq1d9/should_i_always_use_virtualenv/).
+Strictly speaking, working within a virtual environment is not required. At first, it might even feel like a hassle. But in the long run, you will be glad you did it. And you don’t have to take our word for it, you can read discussions on [StackOverflow](https://conda.io/docs/index.html) and [Reddit](https://www.reddit.com/r/Python/comments/2qq1d9/should_i_always_use_virtualenv/).
 
-Good thing [pipenv](https://pipenv.kennethreitz.org/en/latest/) can do this for us.
+There are several different ways to run a virtual environment. In this tutorial, we will take advantage of [pipenv](https://pipenv.kennethreitz.org/en/latest/), a widely used tool that is recommended by leaders in the Python community.
 
-Pipenv and its prerequisites are installed via your computer's command-line interface. You can verify it’s there by typing the following into your terminal:
+Like the commands we've already learned, pipenv is executed with your computer's command-line interface. You can verify it’s there by typing the following into your terminal:
 
 ```bash
 pipenv --version
@@ -135,18 +144,18 @@ pipenv --version
 If you have it installed, you should see the terminal respond with the version on your machine.
 
 ```bash
-pipenv, version 2018.11.26
+pipenv, version 2021.11.23
 ```
 
-If you get an error, you will need to install it.
+If you get an error that says pipenv isn’t present, you will need to install it.
 
-If you are on a Mac, Pipenv’s maintainers [recommend](https://pipenv.kennethreitz.org/en/latest/install/#homebrew-installation-of-pipenv) installing via [Homebrew](https://brew.sh/):
+If you are on a Mac, pipenv’s maintainers [recommend](https://pipenv.kennethreitz.org/en/latest/install/#homebrew-installation-of-pipenv) installing via the [Homebrew](https://brew.sh/) package manager, like so:
 
 ```bash
 brew install pipenv
 ```
 
-If you are on Windows and using the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), you can install [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux) and use it to install Pipenv.
+If you are on Windows and using the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), you can install Homebrew's cousin [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux) and use it to install Pipenv.
 
 If neither option makes sense for you, Pipenv's [docs](https://pipenv.kennethreitz.org/en/latest/install/#pragmatic-installation-of-pipenv) recommend a [user install](https://pip.pypa.io/en/stable/user_guide/#user-installs) via pip:
 
@@ -162,7 +171,7 @@ pipenv --version
 
 ## Install Python tools
 
-Now let's install a our Python packages to see Pipenv in action. We can add them to our project's private virtual environment by typing their names after pipenv’s install command. Save yourself some hassle; Copy and paste it.
+Now let's pipenv to use and install our Python packages. We can add them to our project's virtual environment by typing their names after pipenv’s `install` command. Save yourself some hassle; Copy and paste it.
 
 ```bash
 pipenv install jupyterlab requests bs4
@@ -170,7 +179,9 @@ pipenv install jupyterlab requests bs4
 
 When you invoke Pipenv's `install` command, it checks for an existing virtual environment connected to your project’s directory. Finding none, it creates one, then installs your packages into it.
 
-As a result, two files are added to your project directory: `Pipfile` and `Pipfile.lock`. Open these files in a text editor and you'll see how they describe your project’s Python requirements.
+The packages we’ve requested are downloaded and installed from the [Python Package Index](https://pypi.org/), an open directory of free tools. Each of our programs has a page there. For instance, JupyterLab is indexed at [pypi.org/project/jupyterlab](https://pypi.org/project/jupyterlab/). 
+
+When the installation finishes, two files will added to your project directory: `Pipfile` and `Pipfile.lock`. Open them files in a text editor and you'll see how they describe your project’s Python requirements.
 
 In the `Pipfile`, you'll see the name and exact version of any package we directed Pipenv to install. We didn't specify an exact version, so you'll see:
 
@@ -181,7 +192,7 @@ requests = "*"
 bs4 = "*"
 ```
 
-`Pipfile.lock` has a more complicated, nested structure that specifies the exact version of your project's direct dependencies along with all their sub-dependencies.
+`Pipfile.lock` has a more complicated, nested structure that specifies the exact version of your project's direct dependencies, along with all their sub-dependencies. It’s a complete blueprint for how to install your project on any computer.
 
 ## Save to GitHub
 
