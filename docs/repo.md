@@ -232,14 +232,20 @@ git config --global user.name "your name"
 Then run the `commit` command above again.
 ````
 
-Finally, push your commit up to GitHub.
+The final step is to syncronize the changes we've made on our computer with the copy of the repository hosted on github.com. This is done via git’s [`push`](https://git-scm.com/docs/git-push) command. This complicated command requires two inputs.
+
+First, the nickname of the remote repository you'd like to send your changes. In the parlance of git, the default name is `origin`.
+
+Second, you need to provide the [branch](https://en.wikipedia.org/wiki/Branching_(version_control) of the code you'd like to syncronize. Branching is a tool for maintaining parallel version of your code within the same respository. We won't get that sophisticated in this tutorial. We'll stick to the default code branch, which is typically called `main`.
+
+So, taking all that into account, the standard command to push local changes to GitHub is typically the following. Try it. 
 
 ```bash
 git push origin main
 ```
 
-You just created your first code commit. Reload your repository on GitHub and see your handiwork.
+Your terminal should log the action, reporting back on its interaction with GitHub. Congratulations. You have made your first code commit. Reload your repository’s on GitHub to see your handiwork.
 
 ![first push](_static/repo-first-push.png)
 
-Next we'll work on introducing a web scraper into the code management system you've prepared.
+Next we'll work on introducing a web scraper into the code management system you’ve prepared.
