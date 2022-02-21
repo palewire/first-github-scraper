@@ -54,7 +54,7 @@ You will learn how to:
 * Create a GitHub repository to store your code
 * Use Python to scrape data from the web
 * Configure GitHub Actions to schedule the scrape
-* Automatically log the results to the repository
+* Automatically save the results to the repository
 * Send a Slack notification when new data arrive
 
 Table of contents
