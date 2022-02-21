@@ -51,18 +51,51 @@ If you have an account, you should [log in](https://github.com/login). If you do
 
 ![signed in](_static/repo-signin.png)
 
-* Sign in to GitHub
-* Create a blank new repository
-* Open your terminal
-* Create/move to a Code directory
+Click the green button in upper-left corner to create a [new code repository](https://github.com/new).
+
+![new repo button](_static/repo-new-button.png)
+
+On the next page, fill in a name for your repository. Something like `my-first-github-scraper` will work, but you can name it anything you like.
+
+Make sure the repo is public — which ensures your scraper will run for free — and then hit the big green button at the bottom of the page.
+
+![make new repo](_static/repo-new-repo.png)
+
+## Clone the repository
+
+Whether you know about it or not, there should be a way to open a window and directly issue commands to your operating system. Different operating systems give this tool slightly different names, but they all have some form of it.
+
+On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Other people will call this the “command line.”
+
+On Windows 10, we recommend you install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and select the Ubuntu distribution from the Windows Store. This will give you access to a generic open-source terminal without all the complications and quirks introduced by Windows. On MacOS, the standard terminal app will work fine.
+
+Depending on your operating system and personal preferences, open up a terminal program. It will start you off in your computer’s home directory, just like your file explorer. Enter the following command and press enter to see all of the folders there now.
+
+```bash
+ls
+```
+
+Now let’s check where we are in our computer's file system. For this we'll use a command called [pwd](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your location in the file system, something like `/Users/palewire/`.
+
+```bash
+pwd
+```
+
+
+Use the [mkdir](https://en.wikipedia.org/wiki/Mkdir) command to create a new directory for your code. In the same style as the Desktop, Documents and Downloads folders included by most operating system, we will name this folder Code.
 
 ```bash
 mkdir Code
 ```
 
+To verify that worked, you can open in your file explorer and navigate to your home folder. Now jump into the Code directory, which is the same as double clicking on a folder to enter it in your filesystem navigator.
+
 ```bash
 cd Code
 ```
+
+This is where we'll clone a copy of your repository, which we'll edit locally and then push back up to GitHub.
+
 
 * Clone it to your computer
 
