@@ -26,5 +26,8 @@ scrape
 schedule
 commit
 notify
-about
 ```
+
+## About
+
+This guide was prepared for [a training session](https://www.ire.org/product/nicar22-first-github-scraper/) at the [National Institute for Computer-Assisted Reporting (NICAR)](http://data.nicar.org/)’s 2022 conference in Atlanta. The authors are [Iris Lee](http://irisslee.com/), [Aadit Tambe](https://aadittambe.com/) and [Ben Welsh](https://palewi.re/who-is-ben-welsh/). The tutorial is published as [open-source software](https://github.com/palewire/first-github-scraper/).
