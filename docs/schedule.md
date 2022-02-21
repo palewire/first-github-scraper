@@ -53,7 +53,7 @@ Select **everything** in the `main.yml` workflow file and **delete it**. We will
 
 ## Building a GitHub Actions workflow
 
-GitHub Actions uses YAML syntax to define the workflow. These workflows are stores in the repository, in a hidden directory (denoted by the `.` in front of it) called `.github/workflows`.
+GitHub Actions uses YAML syntax to define the workflow. These workflows are stored in the repository, in a hidden directory (denoted by the `.` in front of it) called `.github/workflows`.
 
 We will start by giving our workflow a `name` — something like "Automated scrape."
 
@@ -153,14 +153,14 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install requirements
-      run: python -m pip install jupyter requests pandas beautifulsoup4
+      run: python -m pip install jupyter requests pandas beautifulsoup4 nbclient
 ```
 
 ```{note}
-GitHub has a detailed explanation of every keyword on [this](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#understanding-the-workflow-file) page.
+GitHub has a detailed explanation of every keyword in the workflow on [this](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#understanding-the-workflow-file) page.
 ```
 
-Before writing code to run the scraper, we will once again use the `uses` keyword to specify that the following step will also run `v2` of the actions/checkout action.
+Before writing code to run the scraper, we will once again use the `uses` keyword to specify that the following step will also run `v2` of the `actions/checkout` [action](https://github.com/actions/checkout).
 
 ```
 name: Automated scrape
@@ -179,11 +179,11 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install requirements
-      run: python -m pip install jupyter requests pandas beautifulsoup4
+      run: python -m pip install jupyter requests pandas beautifulsoup4 nbclient
     - uses: actions/checkout@v2
 ```
 
-Now that we have Python 3 and all the requirements installed, let's run the code, just like we would from the terminal.
+Now that we have all the requirements installed, let's run the code, just like we would from the terminal. We will run the notebook using the `jupyter execute scrape.ipynb` command.
 
 ```
 name: Automated scrape
@@ -202,7 +202,7 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install requirements
-      run: python -m pip install jupyter requests pandas beautifulsoup4
+      run: python -m pip install jupyter requests pandas beautifulsoup4	nbclient
     - uses: actions/checkout@v2
     - name: Run scraper
       run: jupyter execute scrape.ipynb
@@ -227,7 +227,7 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install requirements
-      run: python -m pip install requests pandas beautifulsoup4
+      run: python -m pip install requests pandas beautifulsoup4 nbclient
     - uses: actions/checkout@v2
     - name: Run scraper
       run: jupyter run scrape.ipynb
@@ -255,8 +255,16 @@ git push origin main
 
 Let's go to GitHub and test the Action manually. Navigate back to your repository and click on the "Actions" tab. Click on "Automated scrape," which is the name we gave our workflow.
 
-![go back to actions tab in github](./_static/actions-go-back-to-page.png)
-
 Push the "Run workflow" button, and then the "Run workflow" button once again to execute the action manually.
 
-Watch Actions run the notebook in GitHub and log the data into the repository.
+![go back to actions tab in github](./_static/actions-go-back-to-page.png)
+
+## View the scraped file
+
+Watch GitHub Actions run the notebook in GitHub.
+
+![watch github actions run the notebook](./_static/actions-successful-run.png)
+
+Click on the "Code" tab of the repository and view the scraped CSV file logged to your repository.
+
+![view final file](./_static/actions-view-file.png)
