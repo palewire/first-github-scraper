@@ -212,7 +212,7 @@ bs4 = "*"
 
 ## Save to GitHub
 
-Now we'll log our work with [`git`](https://en.wikipedia.org/wiki/Git), a command-line tool that allows us to carefully track changes files in our repository. It is the open-source technology at the heart of GitHub’s social network and publishing system.
+Now we'll log our work with [`git`](https://en.wikipedia.org/wiki/Git), a command-line tool that allows us to carefully track changes to files in our repository. It is the open-source technology at the heart of GitHub’s social network and publishing system.
 
 The first command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
 
@@ -220,7 +220,7 @@ The first command to learn is [`status`](https://git-scm.com/docs/git-status), w
 git status
 ```
 
-Run it and your terminal should print out the `Pipfile` and `Pipfile.lock` we've added to the repository. The next step is to officially add the files to your repository for tracking with git’s [`add`](https://git-scm.com/docs/git-add) command.
+Run it and your terminal should list out the `Pipfile` and `Pipfile.lock` file we added to the repository. The next step is to instruct `git` to track the new files with the [`add`](https://git-scm.com/docs/git-add) command.
 
 ```bash
 git add Pipfile
@@ -228,10 +228,10 @@ git add Pipfile.lock
 ```
 
 ```{note}
-You can add all of the files in your repository by adding a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) to the end of your command, `git add .`
+Rather than type them one by one, you can add more than one file by using a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) in your command. One common shortcut is `git add .`, which will add all of the files in your repository at once.
 ```
 
-Log the addition of your new files with git’s [`commit`](https://git-scm.com/docs/git-commit) command. You should include a summary of your work after the `-m` flag.
+Logging changes also requires using git’s [`commit`](https://git-scm.com/docs/git-commit) command, which requires a summary of your work after the `-m` flag.
 
 ```bash
 git commit -m "First commit"
@@ -248,19 +248,19 @@ git config --global user.name "your name"
 Then run the `commit` command above again.
 ````
 
-The final step is to syncronize the changes we've made on our computer with the copy of the repository hosted on github.com. This is done via git’s [`push`](https://git-scm.com/docs/git-push) command. This complicated command requires two inputs.
+The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via git’s [`push`](https://git-scm.com/docs/git-push) tool. This complicated command requires two inputs.
 
-First, the nickname of the remote repository you'd like to send your changes. In the parlance of git, the default name is `origin`.
+First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of git, the default name is `origin`.
 
-Second, you need to provide the [branch](https://en.wikipedia.org/wiki/Branching_(version_control) of the code you'd like to syncronize. Branching is a tool for maintaining parallel version of your code within the same respository. We won't get that sophisticated in this tutorial. We'll stick to the default code branch, which is typically called `main`.
+Second, you need to provide the [branch](https://en.wikipedia.org/wiki/Branching_(version_control) of the code you’d like to syncronize. Branching is a tool for maintaining parallel version of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is typically called `main`.
 
-So, taking all that into account, the standard command to push local changes to GitHub is typically the following. Try it. 
+Taking all that into account, the command to push local changes to GitHub is typically the following. Try it. 
 
 ```bash
 git push origin main
 ```
 
-Your terminal should log the action, reporting back on its interaction with GitHub. Congratulations. You have made your first code commit. Reload your repository’s on GitHub to see your handiwork.
+Your terminal should log the action, reporting back on its interaction with GitHub. Congratulations. You have made your first code commit. Reload your repository’s page on GitHub to see your handiwork.
 
 ![first push](_static/repo-first-push.png)
 
