@@ -16,4 +16,4 @@ Start the test documentation server on your computer.
 make docs
 ```
 
-Visit localhost:8000 to see the current state of the site. Edit files in the `./docs` directory and save. The page should reload with the latest.
+Visit [localhost:8000](http://localhost:8000) in your browser to see the current state of the site. Edit files in the `./docs` directory and save. The page should reload with the latest.
