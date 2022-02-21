@@ -32,43 +32,51 @@ Make sure the repo is public, which ensures your scraper will run for free. Then
 
 ## Clone the repository
 
-Whether you know about it or not, there should be a way to open a window and directly issue commands to your operating system. Different operating systems give this tool slightly different names, but they all have some form of it.
+Whether you know it or not, there isa  way to open a special window and directly issue commands to your operating system. Different systems give this tool slightly different names, but they all have some form of it.
 
-On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Other people will call it the “command line.”
+On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Others may call it the “command line.” They’re the same thing, just in different slightly shapes.
 
-This is the tool we’ll use to make a copy of your repository on your computer. Depending on your operating system and personal preferences, open up a terminal program.
+This is the tool we’ll use to make a copy of your repository on your computer. Depending on your operating system and personal preferences, open a terminal program so we can get started.
 
 ```{note}
-If you're a Windows user, we recommend you avoid the standard command line provided by the operating system. Instead, you'd be well served by the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), which will create a development environment better suited for open-source software work. We recommend you install the Ubuntu distribution from the Windows Store. This will give you access to a generic terminal without all the complications and quirks of Windows.
+If you're a Windows user, we recommend you avoid the standard command line provided by the operating system. Instead, you'd be well served by the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), which will create a development environment better suited for open-source software work.
+
+We recommend you install the Ubuntu distribution from the Windows Store. This will give you access to a generic terminal without all the complications and quirks of Windows.
 ```
 
-Once you have your terminal open, it will start you off in your computer’s home directory, much like your file explorer. Let’s verify where we are using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your location in the file system, something like `/Users/palewire/`, your home directory.
+Once you have your terminal open, it will start you off in your computer’s home directory, much like your file explorer.
+
+Let’s verify that using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your terminal’s current location in the file system. You should get back something like `/Users/palewire/`, the path to your home directory.
 
 ```bash
 pwd
 ```
 
-Next let’s enter the [`ls`](https://en.wikipedia.org/wiki/Ls) command and press enter to see all of the folders there now. It should print out the same list of folders you can see in your home directory via the file explorer.
+Next let’s enter the [`ls`](https://en.wikipedia.org/wiki/Ls) command to see all of its subdirectories. The terminal should print out the same list of folders you can see in your home directory via the file explorer.
 
 ```bash
 ls
 ```
 
-Our first task is to create a folder to store our code. Use the [`mkdir`](https://en.wikipedia.org/wiki/Mkdir) command to create a new directory in the same style as the Desktop, Documents and Downloads folders included by most operating systems. We will name this folder `Code`. To verify it worked, open the file explorer and navigate to your home folder.
+Our first task is to create a folder to store our code.
+
+Use the [`mkdir`](https://en.wikipedia.org/wiki/Mkdir) command to create a new directory in the same style as the Desktop, Documents and Downloads folders included by most operating systems.
+
+We will name this folder `Code`. To verify the command works, open the file explorer and navigate to your home folder. After it’s run, you should see the new directory alongside the rest.
 
 ```bash
 mkdir Code
 ```
 
-Now jump into the Code directory, which is the same as double clicking on a folder in your file explorer.
+Now jump into the new directory with the [`cd`](https://en.wikipedia.org/wiki/Cd_(command)) command, which operates the same as double clicking on a folder in your file explorer.
 
 ```bash
 cd Code
 ```
 
-This is the location where we'll download a copy of your repository.
+This is the location where we’ll download a copy of your repository.
 
-There are numerous methods for cloning code, covered in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). This tutorial will demonstration how to use the [`gh`](https://cli.github.com/) command-line utility. If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
+There are numerous methods for cloning code, covered in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). This tutorial will demonstrate how to use the [`gh`](https://cli.github.com/) command-line utility. If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
 
 You can verify you’re ready by executing the following command, which should print out the version of `gh` you have installed.
 
