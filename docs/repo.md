@@ -193,13 +193,13 @@ pipenv install jupyterlab requests bs4
 Save yourself some hassle; Copy and paste the command. There’s no shame. It‘s the best way to avoid typos.
 ```
 
-When you invoke Pipenv's `install` command, it checks for an existing virtual environment connected to your project’s directory. Finding none, it creates one, then installs your packages into it.
+When you invoke Pipenv's `install` command, it checks for an existing virtual environment connected to your project’s directory. Finding none, it creates a new one and installs your packages into it.
 
 The packages we’ve requested are downloaded and installed from the [Python Package Index](https://pypi.org/), an open directory of free tools. Each of our programs has a page there. For instance, JupyterLab is indexed at [pypi.org/project/jupyterlab](https://pypi.org/project/jupyterlab/). 
 
-When the installation finishes, two files will added to your project directory: `Pipfile` and `Pipfile.lock`. Open them files in a text editor and you'll see how they describe your project’s Python requirements.
+When the installation finishes, two files will added to your project directory: `Pipfile` and `Pipfile.lock`. Open them in a text editor and you’ll see how they describe your project’s Python requirements.
 
-In the `Pipfile`, you'll see the name and exact version of any package we directed Pipenv to install. We didn't specify an exact version, so you'll see:
+In the `Pipfile`, you'll find the name and version of the packages we directed `pipenv` to install. We didn’t specify an exact version, so you’ll see something like:
 
 ```
 [packages]
@@ -208,7 +208,7 @@ requests = "*"
 bs4 = "*"
 ```
 
-`Pipfile.lock` has a more complicated, nested structure that specifies the exact version of your project's direct dependencies, along with all their sub-dependencies. It’s a complete blueprint for how to install your project on any computer.
+`Pipfile.lock` has a more complicated, nested structure that specifies the exact version of your project‘s direct dependencies, along with all their sub-dependencies. It’s a complete blueprint for how to install your project on any computer.
 
 ## Save to GitHub
 
