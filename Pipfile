@@ -10,6 +10,9 @@ sphinx-multitoc-numbering = "*"
 myst-parser = "*"
 
 [dev-packages]
+jupyterlab = "*"
+requests = "*"
+bs4 = "*"
 
 [requires]
 python_version = "3.9"
