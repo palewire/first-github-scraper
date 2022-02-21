@@ -71,7 +71,7 @@ Whether you know about it or not, there should be a way to open a window and dir
 
 On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Other people will call this the “command line.”
 
-On Windows 10, we recommend you install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and select the Ubuntu distribution from the Windows Store. This will give you access to a generic open-source terminal without all the complications and quirks introduced by Windows. On MacOS, the standard terminal app will work fine.
+On Windows, we recommend you install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and select the Ubuntu distribution from the Windows Store. This will give you access to a generic open-source terminal without all the complications and quirks introduced by Windows. On MacOS, the standard terminal app will work fine.
 
 Depending on your operating system and personal preferences, open up a terminal program. It will start you off in your computer’s home directory, just like your file explorer. Enter the following command and press enter to see all of the folders there now.
 
@@ -119,38 +119,145 @@ https://github.com/cli/cli/releases/tag/v2.5.1
 If you get an error instead, open a fresh terminal and try again. Still not there? Revisit [cli.github.com](https://cli.github.com) to make sure you've followed all the necessary steps.
 ```
 
-* Clone it to your computer
+Now you should use `gh` to login to GitHub, which will verify that you have permission to edit your repositories.
 
 ```bash
-gh clone palewire/bens-first-github-scraper
+gh auth login
 ```
 
-* `cd` into the code directory
+After you authenticate, it’s time to clone the repository we made. You'll want to edit the code below by inserting your user name and repository.
 
 ```bash
-cd bens-first-github-scraper
+gh clone <your-username>/<your-repo>
 ```
 
-* Install the dependencies (pipenv install jupyterlab, bs4)
+In my case, the command looks like this:
+
+```bash
+gh repo clone palewire/my-first-github-scraper
+```
+
+After clone completes, move into that directory.
+
+```bash
+cd my-first-github-scraper
+```
+
+## Install pipenv
+
+Our web scraper depends on a set of Python tools that we'll need to install before we can run the code. They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data out of HTML. 
+
+By default, Python's third-party packages are all installed in a shared "global" folder somewhere in the depths of your computer. By default, every Python project on your computer draws from this same set of installed programs.
+
+This approach is fine for your first experiments with Python, but it quickly falls apart when you start to get serious about coding.
+
+For instance, say you develop a web application today with [Flask](https://palletsprojects.com/p/flask/) version 1.1. What if, a year from now, you want to start a new project and use a newer version of Flask? Your old app is still live and requires occasional patches, but you don't have time to re-write all of your old to make it compatible with the latest version of Flask.
+
+Open-source projects are changing every day and such conflicts are common, especially when you factor in the sub-dependencies of your project’s direct dependencies, as well as the sub-dependencies of those sub-dependencies.
+
+Programmers solve this problem by creating a [virtual environment](https://docs.python.org/3/tutorial/venv.html) for each project that isolates them into discrete, independent containers that do not rely on code in the global environment.
+
+Strictly speaking, working within a virtual environment is not required. At first, it might even feel like a hassle. But in the long run, you will be glad you did it. And you don’t have to take my word for it, you can read discussions on [StackOverflow](https://conda.io/docs/index.html) and [Reddit](https://www.reddit.com/r/Python/comments/2qq1d9/should_i_always_use_virtualenv/).
+
+Good thing [pipenv](https://pipenv.kennethreitz.org/en/latest/) can do this for us.
+
+Pipenv and its prerequisites are installed via your computer's command-line interface. You can verify it’s there by typing the following into your terminal:
+
+```bash
+pipenv --version
+```
+
+If you have it installed, you should see the terminal respond with the version on your machine.
+
+```bash
+pipenv, version 2018.11.26
+```
+
+If you get an error, you will need to install it.
+
+If you are on a Mac, Pipenv’s maintainers [recommend](https://pipenv.kennethreitz.org/en/latest/install/#homebrew-installation-of-pipenv) installing via [Homebrew](https://brew.sh/):
+
+```bash
+brew install pipenv
+```
+
+If you are on Windows and using the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), you can install [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux) and use it to install Pipenv.
+
+If neither option makes sense for you, Pipenv's [docs](https://pipenv.kennethreitz.org/en/latest/install/#pragmatic-installation-of-pipenv) recommend a [user install](https://pip.pypa.io/en/stable/user_guide/#user-installs) via pip:
+
+```bash
+pip install --user pipenv
+```
+
+Whatever installation route you choose, you can confirm your success by testing for its version again:
+
+```bash
+pipenv --version
+```
+
+## Install Python tools
+
+Now let's install a our Python packages to see Pipenv in action. We can add them to our project's private virtual environment by typing their names after pipenv’s install command. Save yourself some hassle; Copy and paste it.
 
 ```bash
 pipenv install jupyterlab requests bs4
 ```
 
-* Commit the Pipfile and push to github
+When you invoke Pipenv's `install` command, it checks for an existing virtual environment connected to your project’s directory. Finding none, it creates one, then installs your packages into it.
+
+As a result, two files are added to your project directory: `Pipfile` and `Pipfile.lock`. Open these files in a text editor and you'll see how they describe your project’s Python requirements.
+
+In the `Pipfile`, you'll see the name and exact version of any package we directed Pipenv to install. We didn't specify an exact version, so you'll see:
+
+```
+[packages]
+jupyterlab = "*"
+requests = "*"
+bs4 = "*"
+```
+
+`Pipfile.lock` has a more complicated, nested structure that specifies the exact version of your project's direct dependencies along with all their sub-dependencies.
+
+## Commit your work with GitHub
+
+Now we'll log our work with git’s version control system, which carefully tracks the changes to every file in your repository. We can see the changes git has noticed by running the status command.
 
 ```bash
 git status
 ```
 
+That will list out the `Pipfile` and `Pipfile.lock` we've added to the repository. The next step is to officially add the files to your repository for tracking with git's `add` command.
+
 ```bash
-git add .
+git add Pipfile
+git add Pipfile.lock
 ```
+
+```{note}
+You can add all of the files in your repository by running a wildcard command like `git add .`
+```
+
+Log its creation with Git's `commit` command. You can include a personalized message after the `-m` flag.
 
 ```bash
 git commit -m "First commit"
 ```
 
+If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. Then run the `commit` command above again.
+
+```bash
+$ git config --global user.email "your@email.com"
+$ git config --global user.name "your name"
+```
+
+Finally, push your commit up to GitHub.
+
 ```bash
 git push origin main
 ```
+
+You just created your first code commit. Reload your repository on GitHub and see your handiwork.
+
+![first push](_static/repo-first-push.png)
+
+Next we'll work on introducing a web scraper into the code management system you've prepared.
