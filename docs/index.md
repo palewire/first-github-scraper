@@ -17,7 +17,6 @@ You will learn how to:
 
 ```{toctree}
 :maxdepth: 1
-:caption: Chapters
 :name: mastertoc
 :numbered:
 
