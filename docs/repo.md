@@ -32,7 +32,7 @@ Make sure the repo is public, which ensures your scraper will run for free. Then
 
 ## Clone the repository
 
-Whether you know it or not, there isa  way to open a special window and directly issue commands to your operating system. Different systems give this tool slightly different names, but they all have some form of it.
+Whether you know it or not, there is a way to open a special window and directly issue commands to your operating system. Different systems give this tool slightly different names, but they all have some form of it.
 
 On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Others may call it the “command line.” They’re the same thing, just in different slightly shapes.
 
