@@ -60,16 +60,16 @@ Select **everything** in the `main.yml` workflow file and **delete it**. We will
 
 GitHub Actions uses YAML syntax to define the workflow. These workflows are stored in the repository, in a hidden directory (denoted by the `.` in front of it) called `.github/workflows`.
 
-We will start by giving our workflow a `name` — something like "Automated scrape."
+We will start by giving our workflow a `name` — something like "Scrape."
 
 ```
-name: Automated scrape
+name: Scrape
 ```
 
 Next, we will add settings in the workflow so that the Action runs on a schedule — instead of running on `push`, like in our first test. We will use the `on` keyword.
 
 ```
-name: Automated scrape
+name: Scrape
 
 on:
   schedule:
@@ -85,7 +85,7 @@ We will schedule the Action using [Cron](https://en.wikipedia.org/wiki/Cron), a 
 Now let's tell the workflow what tasks — using the `jobs` keyword — to execute. Let's call this job `scrape`.
 
 ```
-name: Automated scrape
+name: Scrape
 
 on:
   schedule:
@@ -105,7 +105,7 @@ A [runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-
 In our case, the runner will be the latest version of Ubuntu, an open-source operating system on Linux.
 
 ```
-name: Automated scrape
+name: Scrape
 
 on:
   schedule:
@@ -120,7 +120,7 @@ jobs:
 Using the `steps` keyword we will tell GitHub the sequence of tasks that we want the job to execute.
 
 ```
-name: Automated scrape
+name: Scrape
 
 on:
   schedule:
@@ -133,7 +133,7 @@ jobs:
     steps:
 ```
 
-Next, we will tell the virtual machine that is hosting this Action to install Python 3, along with the libraries our scraper will use. 
+Next, we will tell the virtual machine that is hosting this Action to install Pipenv and Python 3, along with the libraries our scraper will use. 
 
 The `name` keyword denotes the title we give the step.
 
@@ -142,7 +142,7 @@ The `uses` keyword specifies which version of the `actions/checkout` action to r
 The `run` keyword tells the job to execute a command on the runner.
 
 ```
-name: Automated scrape
+name: Scrape
 
 on:
   schedule:
@@ -153,22 +153,24 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Python 3
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v2
+    - name: Install pipenv
+      run: pipx install pipenv
+    - uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
-    - name: Install requirements
-      run: python -m pip install jupyter requests pandas beautifulsoup4 nbclient
+        python-version: '3.9'
+        cache: 'pipenv'
+    - run: pipenv install jupyter requests pandas beautifulsoup4	nbclient
 ```
 
 ```{note}
 GitHub has a detailed explanation of every keyword in the workflow on [this](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#understanding-the-workflow-file) page.
 ```
 
-Before writing code to run the scraper, we will once again use the `uses` keyword to specify that the following step will also run `v2` of the `actions/checkout` [action](https://github.com/actions/checkout).
+Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` we will `run` the notebook using the `pipenv jupyter execute scrape.ipynb` command. 
 
 ```
-name: Automated scrape
+name: Scrape
 
 on:
   schedule:
@@ -179,97 +181,38 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Python 3
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install requirements
-      run: python -m pip install jupyter requests pandas beautifulsoup4 nbclient
     - uses: actions/checkout@v2
-```
-
-Now that we have all the requirements installed, let's run the code, just like we would from the terminal. We will run the notebook using the `jupyter execute scrape.ipynb` command.
-
-```
-name: Automated scrape
-
-on:
-  schedule:
-    - cron: "0 8 * * *" # 9 a.m. every day UTC
-  workflow_dispatch:
-
-jobs:
-  scrape:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Set up Python 3
-      uses: actions/setup-python@v2
+    - name: Install pipenv
+      run: pipx install pipenv
+    - uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
-    - name: Install requirements
-      run: python -m pip install jupyter requests pandas beautifulsoup4	nbclient
-    - uses: actions/checkout@v2
+        python-version: '3.9'
+        cache: 'pipenv'
+    - run: pipenv install jupyter requests pandas beautifulsoup4	nbclient
     - name: Run scraper
-      run: jupyter execute scrape.ipynb
+      run: pipenv run jupyter execute scrape.ipynb
 ```
 
-Let's add a step to commit our changes after running the scraper, and push those changes.
+## Push your workflow to GitHub
 
-```
-name: Automated scrape
-
-on:
-  schedule:
-    - cron: "0 8 * * *" # 9 a.m. every day UTC
-  workflow_dispatch:
-
-jobs:
-  scrape:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Set up Python 3
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install requirements
-      run: python -m pip install requests pandas beautifulsoup4 nbclient
-    - uses: actions/checkout@v2
-    - name: Run scraper
-      run: jupyter run scrape.ipynb
-    - name: Add and commit
-      run: |-
-        git add --all
-        git config user.name "Automated"
-        git config user.email "actions@users.noreply.github.com"
-        git commit -m "Latest data" 
-    - name: Push
-      run: git push
-```
-
-## Commit your changes
-
-Next, commit these changes to GitHub. 
+Push your the changes you just made on your computer to GitHub.
 
 ```
 git add --all
-git commit -m "updated workflow"
+git commit -m "added scraper workflow"
 git push origin main
 ```
 
-## Run the Action manually on GitHub
+## Run the workflow manually on GitHub
 
-Let's go to GitHub and test the Action manually. Navigate back to your repository and click on the "Actions" tab. Click on "Automated scrape," which is the name we gave our workflow.
+Let's test the workflow we created on GitHub. Navigate back to your repository on and click on the 'Actions' tab.
 
-Push the "Run workflow" button, and then the "Run workflow" button once again to execute the action manually.
+![run action on github](./_static/actions-repo-workflow.png)
 
-![go back to actions tab in github](./_static/actions-go-back-to-page.png)
+Then, click on "Scrape" under "All workflows," and then push the white "Run workflow" button and then the green "Run workflow" button to see how our commands run.
 
-## View the scraped file
+Watch the workflow run successfully! However, our scraper is saving the data file. 
 
-Watch GitHub Actions run the notebook in GitHub.
+The answer is currently nowhere. GitHub is able to execute our scraper successfully, but we have not told it to commit the saved results back to the respository. 
 
-![watch github actions run the notebook](./_static/actions-successful-run.png)
-
-Click on the "Code" tab of the repository and view the scraped CSV file logged to your repository.
-
-![view final file](./_static/actions-view-file.png)
+We will do that in the next chapter.
