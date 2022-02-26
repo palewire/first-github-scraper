@@ -1,7 +1,7 @@
 ```{include} _templates/nav.html
 ```
 
-# Save the data and debug errors 
+# Saving the data and dealing with errors
 
 This chapter will walk you through how to save the data in the repository, and spot and fix common errors.  
 
