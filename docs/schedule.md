@@ -1,7 +1,7 @@
 ```{include} _templates/nav.html
 ```
 
-# Create an Action
+# Run via GitHub Actions
 
 This chapter will walk you through how to create a GitHub Action that executes a scraper on a schedule.
 
@@ -10,23 +10,25 @@ This chapter will walk you through how to create a GitHub Action that executes a
   :local:
 ```
 
-## Getting started with Actions on GitHub
+## Create a generic Action
 
 Navigate back to the GitHub repo and click on the "Actions" tab. This page will display a log of the Action we configure.
 
 ![github actions page](./_static/actions-page.png)
 
-Click on "set up a workflow yourself," which will take you a workflow template created by GitHub, which we will use to get started. 
+Click on "set up a workflow yourself," which will take you to a starter template created by GitHub. 
 
-Without changing anything, push the green "Start commit" button. Write a commit message "create workflow" and commit this workflow to the GitHub repo. We can stick with the default name for the file, `main.yml`.
+Without changing anything, push the green "Start commit" button.
 
 ![commit the action](./_static/actions-commit.png)
+
+ When a popup appears, write a commit message like "create workflow" and commit the file to your repository. We can stick with the default name for the file, `main.yml`.
 
 After you commit, you will be navigated back to the "Code" tab. Note that a directory `workflows` was created inside a hidden `.github` directory in the repo after the commit. All your Actions will live inside the `.github/workflows` directory.
 
 ![a new github/workflows directory is created](./_static/actions-directory.png)
 
-## Understand the Action
+## Understand the generic Action
 
 Navigate back to the "Actions" tab and notice that it logged the first run of the template workflow you just created. 
 
@@ -44,7 +46,7 @@ The third step, Run a one-line script, prints a simple string "Hello, world!" an
 
 Lastly, the fifth and sixth steps complete the Action.
 
-## Pull the changes to your computer
+## Pull the workflow from GitHub
 
 The next step is to pull the changes we made on GitHub to the local branch on your computer. Go back to terminal and enter the following command:
 
@@ -56,7 +58,7 @@ Open the directory in a code editor and navigate to the workflow file we created
 
 Select **everything** in the `main.yml` workflow file and **delete it**. We will write steps to iteratively build the workflow.
 
-## Building a GitHub Actions workflow
+## Customize the workflow
 
 GitHub Actions uses YAML syntax to define the workflow. These workflows are stored in the repository, in a hidden directory (denoted by the `.` in front of it) called `.github/workflows`.
 
@@ -193,7 +195,7 @@ jobs:
       run: pipenv run jupyter execute scrape.ipynb
 ```
 
-## Push your workflow to GitHub
+## Push the workflow to GitHub
 
 Push your the changes you just made on your computer to GitHub.
 
@@ -203,7 +205,7 @@ git commit -m "added scraper workflow"
 git push origin main
 ```
 
-## Run the workflow manually on GitHub
+## Run the workflow manually
 
 Let's test the workflow we created on GitHub. Navigate back to your repository on and click on the 'Actions' tab.
 
