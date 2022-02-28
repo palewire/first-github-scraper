@@ -22,30 +22,37 @@ The webhook for the first github scraper channel has been created and saved as a
 echo $SLACK_WEBHOOK
 ```
 
-# ADD SECRETS PART HERE 
-
 Let's try to send a simple message using the channel's webhook.
 
 ```bash
 curl -d '{"text":"Hello world. I am Iris :wave:"}'  $SLACK_WEBBHOOK
 ```
 
-## The Github Actions Marketplace
-
-Common actions used in workflow can be found in github actions [marketplace](https://github.com/marketplace?type=actions).
-
-Let's use [this](https://github.com/marketplace/actions/slack-incoming-webhook) pre-packaged action command to add slack messaging to our workflow. 
-
-
 ## Creating custom slack messages
 
-Add the below code to create a slack message you would like to see when your scrape succeeds. Remember to replace `${{ secrets.SLACK_WEBHOOK_URL }}` with the actual value of `$SLACK_WEBHOOK`. 
+We will be using [this](https://github.com/marketplace/actions/slack-incoming-webhook) pre-packaged action command to add slack messaging to our workflow. 
 
-First step sets the commit message as a variable to be re-used. 
+Add the below code to create a slack message you would like to see when your scrape succeeds. 
+
+The line `${{ secrets.SLACK_WEBHOOK_URL }}` should be the value of your `$SLACK_WEBHOOK`. If your repository is public, you may want to conceal the value of your webhook. One way to do this is using [Github secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets). 
+
+### Github secrets
+
+To add the webhook to your github secrets, go to your repo and click on `Settings`. On the left corner you will see `Secrets` dropdown menu. Select `Actions`. Then select `New repository secrets` button on the top right corner.
+
+![github secrets](./_static/notify1.png)
+
+Copy the value of `$SLACK_WEBHOOK` from your terminal and add to secrets. Name it `SLACK_WEBHOOK_URL`
+
+![github secrets2](./_static/notify2.png)
+
+### Customizing slack messages
+
+Now that we added the slack webhook to secrets. Let's start adding code to our actions file. 
+
+Copyt the code below. This first step sets the commit message as a variable to be re-used. 
 
 ```
-        - name: Set COMMIT_MESSAGE
-            run: echo "COMMIT_MESSAGE=${{ github.event.head_commit.message }}" | tr '\n' ' ' >> $GITHUB_ENV
         - name: Slack Notification on SUCCESS
         if: success()
         uses: tokorom/action-slack-incoming-webhook@main
@@ -60,10 +67,6 @@ First step sets the commit message as a variable to be re-used.
                 "author_name": "${{ github.actor }}",
                 "author_icon": "${{ github.event.sender.avatar_url }}",
                 "fields": [
-                    {
-                    "title": "Commit Message",
-                    "value": "${{ env.COMMIT_MESSAGE }}"
-                    },
                     {
                     "title": "GitHub Actions URL",
                     "value": "https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}"
@@ -108,30 +111,20 @@ Just below, add another step for a message created when your scrape fails.
 Edit your action file to trigger a fail. For example, a simple change in `pipenv run jupyter execute scrape.ipynb` to `pipenv run jupyter execute s.ipynb` is going to trigger a fail. Let's see what happens to your slack message. 
 
 ![fail slack message](./_static/slack1.png)
-## Using github environment variables
+## Using outputs from actions
 
-In the previous chapter, we added a line of code `git diff --exit-code || git commit -am "adding new data"` that would force this workflow to succeed even when there was nothing to commit. This means we have two different definitions of "success". To distinguish the two different outcomes, we will store the outcome of `git status` in a variable to be evaluated later. 
+In the previous chapter, we added a commit action that would force this workflow to succeed even when there was nothing to commit. This means we have two different definitions of "success". 
 
-Just before your commit step, add the following. 
+To distinguish the two different outcomes, we will use the output from the `Add and commit` step to create two different slack messages.
 
-```
-    - name: Check file
-      id: check_file
-      run: |
-        if [ -n "$(git status --porcelain)" ]; then
-          echo "::set-output name=file_change::true"
-        else
-          echo "::set-output name=file_change::false"
-        fi
+Some actions can create an [output](https://github.com/marketplace/actions/add-commit#outputs) that can be referenced after. 
 
-```
-
-This step will create a variable `steps.check_file.outputs.file_change` that changes depending on your `git status`. 
+Outputs are formatted like so `steps.<action id>.outputs.<output name>`. We will be using the `committed` output. 
 
 For your first slack message where new files are committed, change the condition from `sucess()` to 
 
 ```
-if: success() & steps.check_file.outputs.file_change=='true'
+if: (success() & steps.add_commit.outputs.committed=='true')
 ```
 
 Now let's add one last slack message for a successful run without a new file commit. 
@@ -139,7 +132,7 @@ Now let's add one last slack message for a successful run without a new file com
 
 ```
     - name: Slack Notification on no new commits
-      if: success() & steps.check_file.outputs.file_change=='false'
+      if: s(success() & steps.add_commit.outputs.committed=='false')
       uses: tokorom/action-slack-incoming-webhook@main
       env:
         INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -147,5 +140,6 @@ Now let's add one last slack message for a successful run without a new file com
         text: Nothing was committed
 ```
 
-## Secrets??
+Now run the action one more time. Because no commits have be made, your slack message will now say "Nothing was committed."
+
 

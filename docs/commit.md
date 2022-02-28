@@ -1,7 +1,7 @@
 ```{include} _templates/nav.html
 ```
 
-# Saving the data and dealing with errors
+# Saving the data
 
 This chapter will walk you through how to save the data in the repository, and spot and fix common errors.  
 
@@ -77,7 +77,7 @@ Use the `git fetch` and `git pull` commands from the command line.
 
 ```
 
-## How to spot a failed fails
+## How to spot a failed actions
 
 Let's go back to our action tab and run the action one more time.
 A failed action looks like this:
@@ -93,19 +93,31 @@ To find out what went wrong with your action, click into your job.
 ![github action fail](./_static/commit3.png)
 
 This action failed because there was nothing to commit when your scrape notebook `scrape.ipynb` ran for the second time. 
-If the site you scrape updates sporadically, you may not care if there was a change in your file at every scrape. To fix this, you can replace the commit line with the following:
+If the site you want to scrape updates sporadically, having nothing new to commit from every scrape won't be an issue. Let's find a way to allow github actions to succeed even if there is nothing to commit. 
 
-```bash
-git diff --exit-code || git commit -am "adding new data"
-``` 
+## Adding an action listed on Github marketplace
 
-This line will check to see if there are [any changes](https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---exit-code), and only add and commit if there are changes. 
+We can easily change few lines on our code to make sure action succeeds regardless of an actual commit. However, common actions used in workflows can be found in github actions [marketplace](https://github.com/marketplace?type=actions). These actions ca  have more options that will be useful for us later on.
 
+Let's use [this](https://github.com/marketplace/actions/add-commit) github actions to add and commit our work. 
+
+The [examples](https://github.com/marketplace/actions/add-commit#examples) section will show you how to add this action to your existing workflow. 
+
+Go to your actions file and replace the `Add and commit` section with the following. We are giving an `id` to th
+```
+    - name: Add and commit
+      id: add_commit
+      uses: EndBug/add-and-commit@v8
+      with:
+        committer_name: Automated
+        committer_email: actions@users.noreply.github.com
+        message: "Latest data"
+```
 ## Check your work
 
 Run the action one more time and see if it fails. 
 
-![github action sucess](./_static/commit4.png)
+![github action sucess](./_static/commit4-copy.png)
 
 Now pull the repo back down to your local machine, and change a line in your `warn.csv`. 
 
@@ -113,7 +125,5 @@ Push up and run the action one more time. Check to make sure changes have been c
 
 ![github action check](./_static/commit5.png)
 
-
-Remember, you may want your action to fail depending on your scrape. You can also design a custom message to be sent out to a slack channel. 
-
+It's possible that you may want your action to fail if there was nothing to commit. But there may be a better way - like designing a custom message to be sent out to a slack channel. 
 
