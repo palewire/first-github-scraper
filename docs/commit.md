@@ -18,7 +18,8 @@ We will add commands to this file to ask GitHub to save the results of the scrap
 
 We will accomplish this by instructing the Action to `add`, `commit` and `push` changes after the scraper runs, so they will show up in our respository. This is very similar to the commands you would write to push local changes to GitHub the command line.
 
-```
+```{code-block} yaml
+:emphasize-lines: 22-29
 name: Scrape
 
 on:
