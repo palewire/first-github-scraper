@@ -12,39 +12,135 @@ This chapter will walk you through how to create a GitHub Action that executes a
 
 ## Create a generic Action
 
-Navigate back to the GitHub repo and click on the "Actions" tab. This page will display a log of the Action we configure.
+Navigate back to the GitHub repo and click on the Actions tab.
+
+![github actions tab](./_static/actions-tab.png)
+
+This page will display a log of the Action we configure.
 
 ![github actions page](./_static/actions-page.png)
 
 Click on "set up a workflow yourself," which will take you to a starter template created by GitHub. 
 
+![github actions page](./_static/actions-link.png)
+
 Without changing anything, push the green "Start commit" button.
 
 ![commit the action](./_static/actions-commit.png)
 
- When a popup appears, write a commit message like "create workflow" and commit the file to your repository. We can stick with the default name for the file, `main.yml`.
+When a popup appears, write a commit message like "create workflow" and commit the file to your repository but hitting the green button at the bottom.
 
-After you commit, you will be navigated back to the "Code" tab. Note that a directory `workflows` was created inside a hidden `.github` directory in the repo after the commit. All your Actions will live inside the `.github/workflows` directory.
+![commit popup](_static/actions-commit-button.png)
+
+After you commit, you will be navigated back to your repository’s Code tab. Note that a directory `.github` was created at the root. Inside it you will find a `workflows` directory with your action.
 
 ![a new github/workflows directory is created](./_static/actions-directory.png)
 
 ## Understand the generic Action
 
-Navigate back to the "Actions" tab and notice that it logged the first run of the template workflow you just created. 
+Navigate back to the "Actions" tab.
+
+![actions tab again](_static/actions-tab-again.png)
+
+Motice that it logged the first run of the template workflow you just created. 
 
 ![note GitHub logged our first workflow](./_static/actions-log.png)
 
-Click on "create workflow" next to the green check and then click on "build" to explore and understand our Action.
+Click on "create workflow" next to the green check.
+
+![check out workflow](./_static/actions-green-check.png)
+
+Click on "build" to dig into our Action’s activity.
 
 ![check out workflow](./_static/actions-build.png)
 
-The check mark next to each step indicates that the step was successfully executed. This workflow executed a single job called "build." 
+The check mark next to each step indicates that the step within the build job was successfully executed.
 
-The first two steps — "Set up job" and "Run actions/checkout@v2" — create an environment to run the Action. 
+![check out workflow](./_static/actions-job.png)
 
-The third step, Run a one-line script, prints a simple string "Hello, world!" and the fourt step, "Run a multi-line script" prints two lines: "Add other actions to build," and "test, and deploy your project."
+The first two steps — "Set up job" and "Run actions/checkout@v2" — created an environment to run the Action. They were defined by this portion of the workflow file.
 
-Lastly, the fifth and sixth steps complete the Action.
+```{code-block} yaml
+:emphasize-lines: 17-26
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+```
+
+The second step, “Run a one-line script,” prints a simple string "Hello, world!" and the fourth step, "Run a multi-line script" prints two lines: "Add other actions to build," and "test, and deploy your project."
+
+```{code-block} yaml
+:emphasize-lines: 28-36
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+```
 
 ## Pull the workflow from GitHub
 
@@ -64,13 +160,14 @@ GitHub Actions uses YAML syntax to define the workflow. These workflows are stor
 
 We will start by giving our workflow a `name` — something like "Scrape."
 
-```
+```{code-block} yaml
 name: Scrape
 ```
 
 Next, we will add settings in the workflow so that the Action runs on a schedule — instead of running on `push`, like in our first test. We will use the `on` keyword.
 
-```
+```{code-block} yaml
+:emphasize-lines: 3-6
 name: Scrape
 
 on:
@@ -86,7 +183,8 @@ We will schedule the Action using [Cron](https://en.wikipedia.org/wiki/Cron), a 
 
 Now let's tell the workflow what tasks — using the `jobs` keyword — to execute. Let's call this job `scrape`.
 
-```
+```{code-block} yaml
+:emphasize-lines: 8-9
 name: Scrape
 
 on:
@@ -106,7 +204,8 @@ A [runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-
 
 In our case, the runner will be the latest version of Ubuntu, an open-source operating system on Linux.
 
-```
+```{code-block} yaml
+:emphasize-lines: 10
 name: Scrape
 
 on:
@@ -121,7 +220,8 @@ jobs:
 
 Using the `steps` keyword we will tell GitHub the sequence of tasks that we want the job to execute.
 
-```
+```{code-block} yaml
+:emphasize-lines: 11
 name: Scrape
 
 on:
@@ -143,7 +243,8 @@ The `uses` keyword specifies which version of the `actions/checkout` action to r
 
 The `run` keyword tells the job to execute a command on the runner.
 
-```
+```{code-block} yaml
+:emphasize-lines: 12-19
 name: Scrape
 
 on:
@@ -171,7 +272,8 @@ GitHub has a detailed explanation of every keyword in the workflow on [this](htt
 
 Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` we will `run` the notebook using the `pipenv jupyter execute scrape.ipynb` command. 
 
-```
+```{code-block} yaml
+:emphasize-lines: 20-21
 name: Scrape
 
 on:
@@ -188,9 +290,8 @@ jobs:
       run: pipx install pipenv
     - uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
         cache: 'pipenv'
-    - run: pipenv install jupyter requests pandas beautifulsoup4	nbclient
+    - run: pipenv install jupyter requests bs4 --python `which python`
     - name: Run scraper
       run: pipenv run jupyter execute scrape.ipynb
 ```
@@ -199,9 +300,21 @@ jobs:
 
 Push your the changes you just made on your computer to GitHub.
 
+Add it.
+
+```bash
+git add .
 ```
-git add --all
+
+Commit the changes.
+
+```bash
 git commit -m "added scraper workflow"
+```
+
+Push to GitHub.
+
+```bash
 git push origin main
 ```
 
@@ -209,12 +322,28 @@ git push origin main
 
 Let's test the workflow we created on GitHub. Navigate back to your repository on and click on the 'Actions' tab.
 
-![run action on github](./_static/actions-repo-workflow.png)
+![run action on github](./_static/actions-third-time.png)
 
-Then, click on "Scrape" under "All workflows," and then push the white "Run workflow" button and then the green "Run workflow" button to see how our commands run.
+Click on "Scrape" under "All workflows."
 
-Watch the workflow run successfully! However, our scraper is saving the data file. 
+![scrape tab button](_static/scrape-tab.png)
 
-The answer is currently nowhere. GitHub is able to execute our scraper successfully, but we have not told it to commit the saved results back to the respository. 
+Push the white "Run workflow" button.
 
-We will do that in the next chapter.
+![run workflow button](_static/run-workflow-button.png)
+
+Then the green "Run workflow" button to trigger the job.
+
+![run workflow again](_static/run-workflow-popup.png)
+
+Reload the page and your job will be running.
+
+![job running](_static/job-running.png)
+
+Within a minute or two, the job should complete. The yellow dot will turn green.
+
+![scrape success](_static/scrape-green.png)
+
+Congratulations, you’ve run a scraper in the cloud.
+
+One problem: While GitHub was able to execute our scraper, we haven’t told it to commit the results back to the respository. The data you gathered isn't being saved anywhere. Yet.

@@ -22,7 +22,7 @@ You will learn how to:
 
 repo
 scrape
-schedule
+action
 commit
 notify
 ```
