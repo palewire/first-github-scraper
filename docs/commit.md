@@ -43,7 +43,7 @@ jobs:
       run: pipenv run jupyter execute scrape.ipynb
     - name: Add and commit	
       run: |-	
-        git add --all	
+        git add .	
         git config user.name "Automated"	
         git config user.email "actions@users.noreply.github.com"	
         git commit -m "Latest data" 	
@@ -55,8 +55,8 @@ jobs:
 
 Save the YAML file and commit your changes to the GitHub repository.
 
-```
-git add --all
+```bash
+git add .
 git commit -m "added steps to save results"
 git push origin main
 ```
@@ -104,8 +104,9 @@ Let's use [this](https://github.com/marketplace/actions/add-commit) github actio
 
 The [examples](https://github.com/marketplace/actions/add-commit#examples) section will show you how to add this action to your existing workflow. 
 
-Go to your actions file and replace the `Add and commit` section with the following. We are giving an `id` to th
-```
+Go to your actions file and replace the `Add and commit` section with the following. We are giving a new `id` attribute to the step.
+
+```yaml
     - name: Add and commit
       id: add_commit
       uses: EndBug/add-and-commit@v8
@@ -114,6 +115,7 @@ Go to your actions file and replace the `Add and commit` section with the follow
         committer_email: actions@users.noreply.github.com
         message: "Latest data"
 ```
+
 ## Check your work
 
 Run the action one more time and see if it fails. 
