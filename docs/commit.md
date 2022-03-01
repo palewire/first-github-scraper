@@ -38,7 +38,7 @@ jobs:
       with:
         python-version: '3.9'
         cache: 'pipenv'
-    - run: pipenv install jupyter requests pandas beautifulsoup4	nbclient
+    - run: pipenv install jupyter requests bs4 --python `which python`
     - name: Run scraper
       run: pipenv run jupyter execute scrape.ipynb
     - name: Add and commit	
