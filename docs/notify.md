@@ -52,8 +52,8 @@ Now that we added the slack webhook to secrets. Let's start adding code to our a
 
 Copyt the code below. This first step sets the commit message as a variable to be re-used. 
 
-```
-        - name: Slack Notification on SUCCESS
+```yaml
+      - name: Slack Notification on SUCCESS
         if: success()
         uses: tokorom/action-slack-incoming-webhook@main
         env:
@@ -77,14 +77,13 @@ Copyt the code below. This first step sets the commit message as a variable to b
                     }
                 ]
                 }
-            ]
-      
+            ] 
 ```
 
 Just below, add another step for a message created when your scrape fails. 
 
-```
-        - name: Slack Notification on FAILURE
+```yaml
+      - name: Slack Notification on FAILURE
         if: failure()
         uses: tokorom/action-slack-incoming-webhook@main
         env:
@@ -104,8 +103,7 @@ Just below, add another step for a message created when your scrape fails.
                     }
                 ]
                 }
-            ]
-      
+            ] 
 ```
 
 Edit your action file to trigger a fail. For example, a simple change in `pipenv run jupyter execute scrape.ipynb` to `pipenv run jupyter execute s.ipynb` is going to trigger a fail. Let's see what happens to your slack message. 
@@ -123,14 +121,14 @@ Outputs are formatted like so `steps.<action id>.outputs.<output name>`. We will
 
 For your first slack message where new files are committed, change the condition from `sucess()` to 
 
-```
+```yaml
 if: (success() & steps.add_commit.outputs.committed=='true')
 ```
 
 Now let's add one last slack message for a successful run without a new file commit. 
 
 
-```
+```yaml
     - name: Slack Notification on no new commits
       if: s(success() & steps.add_commit.outputs.committed=='false')
       uses: tokorom/action-slack-incoming-webhook@main
@@ -141,5 +139,3 @@ Now let's add one last slack message for a successful run without a new file com
 ```
 
 Now run the action one more time. Because no commits have be made, your slack message will now say "Nothing was committed."
-
-
