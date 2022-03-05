@@ -25,7 +25,7 @@ echo $SLACK_WEBHOOK
 Let's try to send a simple message using the channel's webhook.
 
 ```bash
-curl -d '{"text":"Hello world. I am Iris :wave:"}'  $SLACK_WEBBHOOK
+curl -d '{"text":"Hello world. I am Iris :wave:"}'  $SLACK_WEBHOOK
 ```
 
 ## Creating custom slack messages
@@ -122,7 +122,7 @@ Outputs are formatted like so `steps.<action id>.outputs.<output name>`. We will
 For your first slack message where new files are committed, change the condition from `sucess()` to 
 
 ```yaml
-if: (success() & steps.add_commit.outputs.committed=='true')
+if: (success() && steps.add_commit.outputs.committed=='true')
 ```
 
 Now let's add one last slack message for a successful run without a new file commit. 
@@ -130,7 +130,7 @@ Now let's add one last slack message for a successful run without a new file com
 
 ```yaml
     - name: Slack Notification on no new commits
-      if: s(success() & steps.add_commit.outputs.committed=='false')
+      if: (success() && steps.add_commit.outputs.committed=='false')
       uses: tokorom/action-slack-incoming-webhook@main
       env:
         INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
