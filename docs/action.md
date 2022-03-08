@@ -431,7 +431,7 @@ jobs:
       with:
         python-version: '3.9'
         cache: 'pipenv'
-    - run: pipenv install jupyter requests bs4 --python `which python`
+    - run: pipenv install --python `which python`
 ```
 
 ```{note}
@@ -459,7 +459,7 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         cache: 'pipenv'
-    - run: pipenv install jupyter requests bs4 --python `which python`
+    - run: pipenv install --python `which python`
     - name: Run scraper
       run: pipenv run jupyter execute scrape.ipynb
 ```
