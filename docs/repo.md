@@ -108,7 +108,7 @@ gh auth login
 After you authenticate, it’s time to clone the new repository we created. Edit the code below by inserting your user name and repository. Then run it.
 
 ```bash
-gh clone <your-username>/<your-repo>
+gh repo clone <your-username>/<your-repo>
 ```
 
 In my case, the command looks like this:
