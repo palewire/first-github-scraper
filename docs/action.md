@@ -340,7 +340,7 @@ name: Scrape
 
 on:
   schedule:
-    - cron: "0 8 * * *" # 9 a.m. every day UTC
+    - cron: "0 8 * * *" # 8 a.m. every day UTC
   workflow_dispatch:
 ```
 This will tell our workflow to execute on a schedule, at 9 a.m. UTC every day.
@@ -357,7 +357,7 @@ name: Scrape
 
 on:
   schedule:
-    - cron: "0 8 * * *" # 9 a.m. every day UTC
+    - cron: "0 8 * * *" # 8 a.m. every day UTC
   workflow_dispatch:
 
 jobs:
@@ -378,7 +378,7 @@ name: Scrape
 
 on:
   schedule:
-    - cron: "0 8 * * *" # 9 a.m. every day UTC
+    - cron: "0 8 * * *" # 8 a.m. every day UTC
   workflow_dispatch:
 
 jobs:
@@ -394,7 +394,7 @@ name: Scrape
 
 on:
   schedule:
-    - cron: "0 8 * * *" # 9 a.m. every day UTC
+    - cron: "0 8 * * *" # 8 a.m. every day UTC
   workflow_dispatch:
 
 jobs:
@@ -417,7 +417,7 @@ name: Scrape
 
 on:
   schedule:
-    - cron: "0 8 * * *" # 9 a.m. every day UTC
+    - cron: "0 8 * * *" # 8 a.m. every day UTC
   workflow_dispatch:
 
 jobs:
@@ -446,7 +446,7 @@ name: Scrape
 
 on:
   schedule:
-    - cron: "0 8 * * *" # 9 a.m. every day UTC
+    - cron: "0 8 * * *" # 8 a.m. every day UTC
   workflow_dispatch:
 
 jobs:
@@ -458,6 +458,7 @@ jobs:
       run: pipx install pipenv
     - uses: actions/setup-python@v2
       with:
+        python-version: '3.9'
         cache: 'pipenv'
     - run: pipenv install --python `which python`
     - name: Run scraper
