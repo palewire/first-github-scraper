@@ -10,7 +10,7 @@ This chapter will walk you through how to save the data in the repository, and s
   :local:
 ```
 
-## Tell the Action to log the result
+## Log the result
 
 On your computer, navigate to the `main.yml` file in the `.github/workflows` directory. Open it in your code editor. 
 
@@ -38,7 +38,7 @@ jobs:
       with:
         python-version: '3.9'
         cache: 'pipenv'
-    - run: pipenv install jupyter requests bs4 --python `which python`
+    - run: pipenv install --python `which python`
     - name: Run scraper
       run: pipenv run jupyter execute scrape.ipynb
     - name: Add and commit	
@@ -51,7 +51,7 @@ jobs:
       run: git push
 ```
 
-## Commit your changes to GitHub
+## Commit your changes
 
 Save the YAML file and commit your changes to the GitHub repository.
 
@@ -61,7 +61,7 @@ git commit -m "added steps to save results"
 git push origin main
 ```
 
-## Run the Action on GitHub (and watch it log the data!)
+## Run the Action
 
 Navigate back to your respository on GitHub, and once again, click on the "Actions" tab. Then click on "Scrape" under "All workflows" and run the workflow. 
 
@@ -75,10 +75,9 @@ After the Action has run, go to the "Code" tab on GitHub, and notice a new `warn
 When the Action runs, it saves the data files to GitHub. The next time you want to make modifications to your code in the repository, you need to first pull the most recent changes from the remote branch on GitHub to your computer, before committing and pushing anymore changes. 
 
 Use the `git fetch` and `git pull` commands from the command line.
-
 ```
 
-## How to spot a failed actions
+## Examine failed actions
 
 Let's go back to our action tab and run the action one more time.
 A failed action looks like this:
@@ -96,7 +95,7 @@ To find out what went wrong with your action, click into your job.
 This action failed because there was nothing to commit when your scrape notebook `scrape.ipynb` ran for the second time. 
 If the site you want to scrape updates sporadically, having nothing new to commit from every scrape won't be an issue. Let's find a way to allow github actions to succeed even if there is nothing to commit. 
 
-## Adding an action listed on Github marketplace
+## Add an action from Github Marketplace
 
 We can easily change few lines on our code to make sure action succeeds regardless of an actual commit. However, common actions used in workflows can be found in github actions [marketplace](https://github.com/marketplace?type=actions). These actions ca  have more options that will be useful for us later on.
 
