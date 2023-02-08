@@ -1,7 +1,7 @@
 ```{include} _templates/nav.html
 ```
 
-# Scrape data using google collab
+# Scrape data locally 
 
 This chapter will guide you through the process of adding a Python web scraper to your repository.
 
@@ -10,13 +10,13 @@ This chapter will guide you through the process of adding a Python web scraper t
   :local:
 ```
 
-## Find the scraper
+## Download a scraper
 
 The mechanics of how to devise a web scraper are beyond the scope of this class. Rather than craft our own, we will use the scraper created as part of the [“Ẅeb Scraping with Python”](https://github.com/ireapps/teaching-guide-python-scraping/blob/master/Web%20scraping%20with%20Python.ipynb) class put on by [Investigative Reporters and Editors](https://www.ire.org/). If you'd like to learn more about the scraping process, follow [their tutorial](https://github.com/ireapps/teaching-guide-python-scraping/blob/master/Web%20scraping%20with%20Python.ipynb).
 
 ![ire class](_static/scraper-ire.png)
 
-A completed, simplified version of IRE’s scraper is available at [github.com/palewire/first-github-scraper](https://www.github.com/palewire/first-github-scraper/). 
+A completed, simplified version of IRE’s scraper is available at [github.com/palewire/first-github-scraper](https://www.github.com/palewire/first-github-scraper/). Open the `scrape.ipynb` file there and click the button labeled "Raw." It will give you the scraper’s [source code](https://raw.githubusercontent.com/palewire/first-github-scraper/main/scrape.ipynb). Save that file into your repository’s root directory as `scrape.ipynb`.
 
 The routine is trained to download [WARN Act](https://en.wikipedia.org/wiki/Worker_Adjustment_and_Retraining_Notification_Act_of_1988) notices [posted](https://www.dllr.state.md.us/employment/warn.shtml) by the state of Maryland’s Department of Labor. The list is updated when companies based in the state disclose a mass layoff. Business reporters frequently use notices like these to report when plants close and workers lose jobs.
 
@@ -24,9 +24,11 @@ The routine is trained to download [WARN Act](https://en.wikipedia.org/wiki/Work
 If you’re interested in getting more involved with tracking WARN Act notices, investigate the [scraping system maintained by Stanford’s Big Local News](https://github.com/biglocalnews/warn-scraper) project. It scrapes filings from dozens of different state websites, consolidating them into a single file. That process is automated via, you guessed it, a [GitHub Action](https://github.com/biglocalnews/warn-github-flow).
 ```
 
-## Verify what tools are being used
+There are different ways to run and test this scraper. This section will show you how to install Python tools on your computer to run this locally. If you want to learn how to run this notebook without installing them, skip to section 3. 
 
-If you want to run the web scraper locally, we will need to install set of Python tools.
+## Install pipenv
+
+Our web scraper will depend on a set of Python tools that we’ll need to install before we can run the code.
 
 They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data out of HTML.
 
@@ -36,19 +38,84 @@ JupyterLab is required to run the `.ipynb` notebook file. We can tell `requests`
 
 By default, Python's third-party packages are installed in a shared folder somewhere in the depths of your computer. Unless told otherwise, every Python project will draw from this common pool of programs.
 
-To run this notebook locally on your computer check out section 2 of this documentation - [Scrape data locally](https://palewi.re/docs/first-github-scraper/scrape-locally.html). Section 2 and 3 are interchangeable - whether you would want to run this locally or on a web browser (which is covered on this section) is up to you.
+That approach is fine for your first experiments with Python, but it quickly falls apart when you start to get serious about coding.
 
-A simpler way to run a notebook without installing Python and its libraries is to use [Google Collab](https://colab.research.google.com/). Google Collab is a product from Google research that allows you to run python code on your browser - and it's free! It's an easy way to get started on using jupyter notebook without having to install all its requirements.
+For instance, say you develop a web application today with [Flask](https://palletsprojects.com/p/flask/) version 1.1. What if, a year from now, you start a new project and use a newer version of Flask? Your old app is still running and may require occasional patches, but you may not have time to rewrite your old code to make it compatible with the latest version.
 
-## Import and the scraper on Google Collab
+Open-source projects are changing every day and such conflicts are common, especially when you factor in the sub-dependencies of your project’s direct dependencies, as well as the sub-dependencies of those sub-dependencies.
 
-Make your way to [Goolge Collab](https://colab.research.google.com/) - you will need a google account and sign in. Choose the Github button and add the [link](https://github.com/palewire/first-github-scraper/blob/main/scrape.ipynb) to our scraper. 
+Programmers solve this problem by creating a [virtual environment](https://docs.python.org/3/tutorial/venv.html) for each project, which isolates the code into a discrete, independent container that does not rely on the global environment.
 
-![collab front page](_static/scraper-collab-photo.png)
+Strictly speaking, working within a virtual environment is not required. At first it might even feel like a hassle, but in the long run you will be glad you did it. 
 
-Once it populates, click "open in new tab"
+```{note}
+You don’t have to take our word for it, you can read discussions on [StackOverflow](https://conda.io/docs/index.html) and [Reddit](https://www.reddit.com/r/Python/comments/2qq1d9/should_i_always_use_virtualenv/).
+```
 
+There are several different ways to run a virtual environment. In this tutorial, we will take advantage of [`pipenv`](https://pipenv.kennethreitz.org/en/latest/), a widely used tool that is [recommended](https://packaging.python.org/en/latest/guides/tool-recommendations/) by leaders in the Python community.
 
+Like the commands we've already learned, `pipenv` is executed with your computer’s command-line interface. You can verify it’s there by typing the following into your terminal:
+
+```bash
+pipenv --version
+```
+
+If you have it installed, you should see the terminal respond with the version on your machine. That will look something like this:
+
+```bash
+pipenv, version 2021.11.23
+```
+
+If you get an error that says `pipenv` isn’t present, you will need to install it.
+
+If you are on a Mac, the `pipenv` maintainers [recommend](https://pipenv.kennethreitz.org/en/latest/install/#homebrew-installation-of-pipenv) installing via the [Homebrew](https://brew.sh/) package manager, like so:
+
+```bash
+brew install pipenv
+```
+
+If you are on Windows and using the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), you can use Homebrew’s cousin [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux) to install Pipenv.
+
+If neither option makes sense for you, the `pipenv` [documentation](https://pipenv.kennethreitz.org/en/latest/install/#pragmatic-installation-of-pipenv) recommends an [install](https://pip.pypa.io/en/stable/user_guide/#user-installs) via another Python tool, [`pip`](https://pypi.org/project/pip/):
+
+```bash
+pip install --user pipenv
+```
+
+Whatever installation route you choose, you can confirm your success by asking for the `pipenv` version, as we did above.
+
+```bash
+pipenv --version
+```
+
+## Install Python tools
+
+Now let's use `pipenv` to install our Python packages. We can add them to our project's virtual environment by typing their names after the `install` command.
+
+```bash
+pipenv install jupyterlab requests bs4
+```
+
+```{note}
+Save yourself some hassle; Copy and paste the command. There’s no shame. It’s the best way to avoid typos.
+```
+
+When you invoke the `install` command, `pipenv` checks for an existing virtual environment connected to your project’s directory. Finding none, it creates a new environment and installs your packages into it.
+
+The packages we’ve requested are downloaded and installed from the [Python Package Index](https://pypi.org/), an open directory of free tools. Each of our programs has a page there. For instance, JupyterLab is indexed at [pypi.org/project/jupyterlab](https://pypi.org/project/jupyterlab/). 
+
+When the installation finishes, two files will added to your project directory: `Pipfile` and `Pipfile.lock`. Open them in a text editor and you’ll see how they describe your project’s Python requirements.
+
+In the `Pipfile`, you'll find the name and version of the packages we directed `pipenv` to install. We didn’t specify an exact version, so you’ll see something like:
+
+```
+[packages]
+jupyterlab = "*"
+requests = "*"
+bs4 = "*"
+```
+
+`Pipfile.lock` has a more complicated, nested structure that specifies the exact version of your project‘s direct dependencies, along with all their sub-dependencies. It’s a complete blueprint for how to install your project on any computer.
 
 ## Run the scraper
 

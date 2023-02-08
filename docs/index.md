@@ -21,6 +21,7 @@ You will learn how to:
 :numbered:
 
 repo
+scrape-locally
 scrape
 action
 commit
