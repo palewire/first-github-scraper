@@ -14,21 +14,21 @@ This chapter will walk you through how to make a repository hosted by GitHub tha
 
 The first step is to visit [github.com](https://www.github.com).
 
-![github.com](_static/repo-github.png)
+![github.com](_static/repo-github-new-2023.png)
 
 If you have an account, you should [log in](https://github.com/login). If you don’t have an account, you'll need to [make one](https://github.com/signup). Once that's done GitHub will take you to [your personal homepage](https://github.com/).
 
-![signed in](_static/repo-signin.png)
+![signed in](_static/repo-github-signin-2023.png)
 
 Click the green button in upper-left corner to create a [new code repository](https://github.com/new).
 
-![new repo button](_static/repo-new-button.png)
+![new repo button](_static/repo-github-new-button-2023.png)
 
 On the next page, fill in a name for your repository. Something like `my-first-github-scraper` will work, but you can name it anything.
 
 Make sure the repo is public, which ensures your scraper will run for free. Then hit the green button at the bottom of the page.
 
-![make new repo](_static/repo-new-repo.png)
+![make new repo](_static/repo-github-create-repo-2023.png)
 
 ## Enter the command line
 
@@ -46,7 +46,7 @@ We recommend you install the Ubuntu distribution from the Windows Store. This wi
 
 Once you have your terminal open, it will start you off in your computer’s home directory, much like your file explorer.
 
-Let’s verify that using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your terminal’s current location in the file system. You should get back something like `/Users/palewire/`.
+Let’s verify that using a command called [`pwd`](https://en.wikipedia.org/wiki/Pwd), which stands for present working directory. The output is the full path of your terminal’s current location in the file system. You should get back something like `/Users/aadittambe`.
 
 ```bash
 pwd
@@ -92,7 +92,7 @@ The output should look something like this:
 
 ```bash
 gh version 2.5.1 (2022-02-15)
-https://github.com/cli/cli/releases/tag/v2.5.1
+https://github.com/cli/cli/releases/tag/v2.5.2
 ```
 
 ```{note}
@@ -108,13 +108,13 @@ gh auth login
 After you authenticate, it’s time to clone the new repository we created. Edit the code below by inserting your user name and repository. Then run it.
 
 ```bash
-gh repo clone <your-username>/<your-repo>
+gh repo clone https://github.com/<your-username>/<your-repo>
 ```
 
 In my case, the command looks like this:
 
 ```bash
-gh repo clone palewire/my-first-github-scraper
+gh repo clone https://github.com/aadittambe/my-first-github-scraper
 ```
 
 After clone completes, run the `ls` command again. You should see a new folder created by `gh`.
