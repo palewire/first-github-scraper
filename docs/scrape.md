@@ -42,90 +42,22 @@ A simpler way to run a notebook without installing Python and its libraries is t
 
 ## Import and the scraper on Google Collab
 
-Make your way to [Goolge Collab](https://colab.research.google.com/) - you will need a google account and sign in. Choose the Github button and add the [link](https://github.com/palewire/first-github-scraper/blob/main/scrape.ipynb) to our scraper. 
+Make your way to [Goolge Collab](https://colab.research.google.com/) - you will need a google account and sign in. Choose the Github button and add the [link](https://github.com/palewire/first-github-scraper/blob/main/scrape.ipynb) to our scraper. Hit the search button. 
 
-![collab front page](_static/scraper-collab-photo.png)
+![collab front page](_static/scraper-collab-front.png)
 
-Once it populates, click "open in new tab"
-
+This will open up the notebook on your browser. First, let's make sure to save a copy of this scraper in our google drive. Go to File -> Save a copy in Drive. This will allow you to run the scraper on your collab account without having to search for the GitHub link.
 
 
 ## Run the scraper
 
-With your Python tools installed, you’re ready to run the scraper. JupyterLab comes equipped with a special command — `jupyter execute` — that can run any `.ipynb` file from the command line.
+Notebooks are comprised of "cells" where you can add your code. You have to execute each line of code in your cell by "running" the cell. You can do this in many ways. Try clicking the play button on the left side of the cell. If you are familiar with Jupyter notebooks, you'll find that keyboard shortcuts like SHIFT + ENTER will work to the cell as well. You can also run the notebook from top to bottom once, by clicking on Runtime --> Run all. Notice our last cell, which creates a warn-data.csv. Click on the folder icon at the bottom of left panel to see your file. 
 
-Since JupyterLab was installed inside of a `pipenv` virtual environment, you’ll need to invoke it with the `pipenv run` command to access the special container where our programs were installed.
 
-Here's how to do it. Give it a try.
+![collab notebook ](_static/scraper-collab-notebook.png)
 
-```bash
-pipenv run jupyter execute scrape.ipynb
-```
 
-Once it finishes, list out the files in your directory with the `ls` command.
+You should see a new file named `warn-data.csv` created by the scraper. Clicking on the Mount Drive icon on the top of the folder panel will create a new cell in your notebook. If you run the cell, it will create a link to your google drive and allow you to drag your output into drive. You can also download the csv to your computer by right clicking on the csv file. 
 
-```bash
-ls
-```
 
-You should see a new file named `warn-data.csv` created by the scraper. Open it in the spreadsheet program of your choice. You should see the data from [Maryland’s site](https://www.dllr.state.md.us/employment/warn.shtml) structured and ready to analyze.
-
-![scraper sheet](_static/scraper-csv.png)
-
-## Save to GitHub
-
-Now we'll log our work with [`git`](https://en.wikipedia.org/wiki/Git), a command-line tool that allows us to carefully track changes to files in our repository. It is the open-source technology at the heart of GitHub’s social network and publishing system.
-
-The first command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
-
-```bash
-git status
-```
-
-Run it and your terminal should list out the four files we added to the repository. The next step is to instruct `git` to track the new files with the [`add`](https://git-scm.com/docs/git-add) command.
-
-```bash
-git add scrape.ipynb
-git add warn-data.csv
-git add Pipfile
-git add Pipfile.lock
-```
-
-```{note}
-Rather than introduce files one by one, you can add more than one file by using a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) in your command. One common shortcut is `git add .`, which will add all of the files in your repository at once.
-```
-
-Logging changes also requires using the [`commit`](https://git-scm.com/docs/git-commit) command, which expects a summary of your work after the `-m` flag.
-
-```bash
-git commit -m "First commit"
-```
-
-````{warning}
-If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. 
-
-```bash
-git config --global user.email "your@email.com"
-git config --global user.name "your name"
-```
-
-Then run the `commit` command above again.
-````
-
-The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the [`push`](https://git-scm.com/docs/git-push) tool. This complicated `git` command requires two inputs.
-
-First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default name is `origin`.
-
-Second, you need to provide the [branch](https://en.wikipedia.org/wiki/Branching_(version_control)) of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
-
-Taking all that into account, the command to push local changes to GitHub is typically the following. Try it. 
-
-```bash
-git push origin main
-```
-
-Your terminal should log the action, reporting back on its interaction with GitHub. Congratulations. You have made your first code commit. Reload your repository’s page on GitHub to see your handiwork.
-
-![first push](_static/repo-first-push.png)
-
-Next we'll learn how to create a GitHub Action that can automatically run your scraper every day.
+Open it in the spreadsheet program of your choice. You should see the data from [Maryland’s site](https://www.dllr.state.md.us/employment/warn.shtml) structured and ready to analyze.
