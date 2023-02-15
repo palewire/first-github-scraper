@@ -411,6 +411,60 @@ The `uses` keyword specifies which version of the `actions/checkout` action to r
 
 The `run` keyword tells the job to execute a command on the runner.
 
+```{note}
+For those who are running scraper notebooks on collab or Jupyter Lab Desktop apps see below. If you are using your scraper locally with pipenv skip to next section
+```
+
+Remember the imports for the scraper, your actions file will need to direct GithubActions to install them. 
+
+```{code-block} yaml
+:emphasize-lines: 12-17
+name: Scrape
+
+on:
+  schedule:
+    - cron: "0 8 * * *" # 8 a.m. every day UTC
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - run: pip install notebook requests bs4
+```
+
+Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` we will `run` the notebook using the `jupyter execute scrape.ipynb` command. 
+
+```{code-block} yaml
+:emphasize-lines: 17-19
+name: Scrape
+
+on:
+  schedule:
+    - cron: "0 8 * * *" # 8 a.m. every day UTC
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - run: pip install notebook requests bs4
+    - name: Run scraper
+      run: pipenv run jupyter execute scrape.ipynb
+```
+
+```{note}
+For those who running scraper locally with pipenv. 
+```
+
 ```{code-block} yaml
 :emphasize-lines: 12-19
 name: Scrape
