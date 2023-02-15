@@ -65,58 +65,12 @@ Open it in the spreadsheet program of your choice. You should see the data from 
 
 ## Save to GitHub
 
-Now we'll log our work with [`git`](https://en.wikipedia.org/wiki/Git), a command-line tool that allows us to carefully track changes to files in our repository. It is the open-source technology at the heart of GitHub’s social network and publishing system.
+Now we'll log our work in our repository using GitHub Desktop. First let's download the files we want to keep in our repository. Go to your google drive page, right click and download your scraper notebook. It should be an `ipynb` file. 
 
-The first command to learn is [`status`](https://git-scm.com/docs/git-status), which prints out a report card on the current state of your repository.
+Open your desktop and click on "View the files of your repository in Finder". Drag the downloaded scrape.ipynb file to the folder. You will see the file on the right pannel. You can leave a specific commit message (as a default it will say "Create scrape.ipynb"). Click on "Commit to main". Then click "Push to origin".
 
-```bash
-git status
-```
+![github desktop](_static/scraper-github.png)
 
-Run it and your terminal should list out the four files we added to the repository. The next step is to instruct `git` to track the new files with the [`add`](https://git-scm.com/docs/git-add) command.
-
-```bash
-git add scrape.ipynb
-git add warn-data.csv
-git add Pipfile
-git add Pipfile.lock
-```
-
-```{note}
-Rather than introduce files one by one, you can add more than one file by using a [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character) in your command. One common shortcut is `git add .`, which will add all of the files in your repository at once.
-```
-
-Logging changes also requires using the [`commit`](https://git-scm.com/docs/git-commit) command, which expects a summary of your work after the `-m` flag.
-
-```bash
-git commit -m "First commit"
-```
-
-````{warning}
-If this is your first time using Git, you may be prompted to configure you name and email. If so, take the time now. 
-
-```bash
-git config --global user.email "your@email.com"
-git config --global user.name "your name"
-```
-
-Then run the `commit` command above again.
-````
-
-The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the [`push`](https://git-scm.com/docs/git-push) tool. This complicated `git` command requires two inputs.
-
-First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default name is `origin`.
-
-Second, you need to provide the [branch](https://en.wikipedia.org/wiki/Branching_(version_control)) of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
-
-Taking all that into account, the command to push local changes to GitHub is typically the following. Try it. 
-
-```bash
-git push origin main
-```
-
-Your terminal should log the action, reporting back on its interaction with GitHub. Congratulations. You have made your first code commit. Reload your repository’s page on GitHub to see your handiwork.
-
-![first push](_static/repo-first-push.png)
+Now you will see your scraper on your github. 
 
 Next we'll learn how to create a GitHub Action that can automatically run your scraper every day.
