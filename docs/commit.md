@@ -50,7 +50,7 @@ jobs:
     - name: Push	
       run: git push
 ```
-
+CHANGE SETTINGS TO ALLOW COMMIT
 ## Commit your changes
 
 Save the YAML file and commit your changes to the GitHub repository.

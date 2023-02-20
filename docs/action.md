@@ -19,10 +19,10 @@ Navigate back to the GitHub repo and click on the Actions tab.
 This page will display a log of the Action we configure.
 
 ![github actions page](./_static/actions-page.png)
-
+<!-- 
 Click on "set up a workflow yourself," which will take you to a starter template created by GitHub. 
 
-![github actions page](./_static/actions-link.png)
+![github actions page](./_static/actions-link.png)  Click on simple workflow instead-->
 
 Without changing anything, push the green "Start commit" button.
 
@@ -43,8 +43,8 @@ Navigate back to the "Actions" tab.
 ![actions tab again](_static/actions-tab-again.png)
 
 Notice that it logged the first run of the template workflow you just created. 
-
-![note GitHub logged our first workflow](./_static/actions-log.png)
+<!-- 
+![note GitHub logged our first workflow](./_static/actions-log.png)  OUTDATED IMG-->
 
 Click on "create workflow" next to the green check.
 
@@ -310,19 +310,10 @@ jobs:
           echo test, and deploy your project.
 ```
 
-## Pull the workflow from GitHub
+## Customize the workflow (Collab)
 
-The next step is to pull the changes we made on GitHub to the local branch on your computer. Go back to terminal and enter the following command:
+CREATE NEW BLANK WORKFLOW TO START WIRTING NEW ACTION FILE 
 
-```
-git pull origin main
-```
-
-Open the directory in a code editor and navigate to the workflow file we created called `main.yml` in the `.github/workflows` directory.
-
-Select **everything** in the `main.yml` workflow file and **delete it**. We will write steps to iteratively build the workflow.
-
-## Customize the workflow
 
 GitHub Actions uses YAML syntax to define the workflow. These workflows are stored in the repository, in a hidden directory (denoted by the `.` in front of it) called `.github/workflows`.
 
@@ -458,8 +449,57 @@ jobs:
         python-version: '3.9'
     - run: pip install notebook requests bs4
     - name: Run scraper
-      run: pipenv run jupyter execute scrape.ipynb
+      run: jupyter execute scrape.ipynb
 ```
+
+COMMIT THIS New WORKFLOW
+
+## Run the workflow manually
+
+Let's test the workflow we created on GitHub. Navigate back to your repository on and click on the 'Actions' tab.
+
+![run action on github](./_static/actions-third-time.png)
+
+Click on "Scrape" under "All workflows."
+
+![scrape tab button](_static/scrape-tab.png)
+
+Push the white "Run workflow" button.
+
+![run workflow button](_static/run-workflow-button.png)
+
+Then the green "Run workflow" button to trigger the job.
+
+![run workflow again](_static/run-workflow-popup.png)
+
+Reload the page and your job will be running.
+
+![job running](_static/job-running.png)
+
+Within a minute or two, the job should complete. The yellow dot will turn green.
+
+![scrape success](_static/scrape-green.png)
+
+Congratulations, you’ve run a scraper in the cloud.
+
+One problem: While GitHub was able to execute our scraper, we haven’t told it to commit the results back to the respository. The data you gathered isn't being saved anywhere. Yet.
+
+## Customize workflow - pipenv 
+
+<!-- ## Pull the workflow from GitHub
+
+The next step is to pull the changes we made on GitHub to the local branch on your computer. Go back to terminal and enter the following command:
+
+```
+git pull origin main
+```
+
+Open the directory in a code editor and navigate to the workflow file we created called `main.yml` in the `.github/workflows` directory.
+
+Select **everything** in the `main.yml` workflow file and **delete it**. We will write steps to iteratively build the workflow. 
+
+CREATE A NEW BLANK WORKFLOW THIS TIME TO START WRITING NEW ACTION FILE FOR SCRAPING 
+-->
 
 ```{note}
 For those who running scraper locally with pipenv. 
@@ -540,33 +580,3 @@ Push to GitHub.
 ```bash
 git push origin main
 ```
-
-## Run the workflow manually
-
-Let's test the workflow we created on GitHub. Navigate back to your repository on and click on the 'Actions' tab.
-
-![run action on github](./_static/actions-third-time.png)
-
-Click on "Scrape" under "All workflows."
-
-![scrape tab button](_static/scrape-tab.png)
-
-Push the white "Run workflow" button.
-
-![run workflow button](_static/run-workflow-button.png)
-
-Then the green "Run workflow" button to trigger the job.
-
-![run workflow again](_static/run-workflow-popup.png)
-
-Reload the page and your job will be running.
-
-![job running](_static/job-running.png)
-
-Within a minute or two, the job should complete. The yellow dot will turn green.
-
-![scrape success](_static/scrape-green.png)
-
-Congratulations, you’ve run a scraper in the cloud.
-
-One problem: While GitHub was able to execute our scraper, we haven’t told it to commit the results back to the respository. The data you gathered isn't being saved anywhere. Yet.

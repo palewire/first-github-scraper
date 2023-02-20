@@ -12,6 +12,8 @@ This chapter will walk you through creating a custom slack message for your acti
 
 ## Send a message
 
+REDO THIS PART WITH THE RIGHT WEBHOOK AND REWRITE
+
 Join `#first-github-scraper` at nicar2022.slack.com
 
 Slack's [Incoming Webhooks](https://api.slack.com/messaging/webhooks) allow you to send messages from your apps. Read [this](https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack) for instructions on how to create one for your slack channel.  
