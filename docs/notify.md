@@ -14,20 +14,14 @@ This chapter will walk you through creating a custom slack message for your acti
 
 REDO THIS PART WITH THE RIGHT WEBHOOK AND REWRITE
 
-Join `#first-github-scraper` at nicar2022.slack.com
+Join `#nicar23` at nicar-2023-sandbox.slack.com. You should have received an email invite to slack, along with a Google Doc containing a webhook. 
 
 Slack's [Incoming Webhooks](https://api.slack.com/messaging/webhooks) allow you to send messages from your apps. Read [this](https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack) for instructions on how to create one for your slack channel.  
-
-The webhook for the first github scraper channel has been created and saved as an environment variable on your computer. Let's make sure we have them. 
-
-```bash
-echo $SLACK_WEBHOOK
-```
 
 Let's try to send a simple message using the channel's webhook.
 
 ```bash
-curl -d '{"text":"Hello world. I am Iris :wave:"}'  $SLACK_WEBHOOK
+curl -d '{"text":"Hello world. I am Iris :wave:"}'  WEBHOOK
 ```
 
 ## Select the action
