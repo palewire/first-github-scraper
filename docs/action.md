@@ -316,7 +316,7 @@ jobs:
 
 ## Customize the workflow (with `pip` and Google Collab)
 
-CREATE NEW BLANK WORKFLOW TO START WIRTING NEW ACTION FILE 
+<!-- CREATE NEW BLANK WORKFLOW TO START WIRTING NEW ACTION FILE  -->
 
 Now, we'll create a similar workflow to trigger the run of our scraper at a particular interval.
 
@@ -508,7 +508,7 @@ Congratulations, you’ve run a scraper in the cloud.
 
 One problem: While GitHub was able to execute our scraper, we haven’t told it to commit the results back to the respository. The data you gathered isn't being saved anywhere. Yet.
 
-## Customize workflow (Advanced, with `pipenv`)
+## Optional: Customize workflow (Advanced, with `pipenv`)
 
 <!-- ## Pull the workflow from GitHub
 
@@ -581,26 +581,4 @@ jobs:
     - run: pipenv install --python `which python`
     - name: Run scraper
       run: pipenv run jupyter execute scrape.ipynb
-```
-
-## Push the workflow to GitHub
-
-Push your the changes you just made on your computer to GitHub.
-
-Add it.
-
-```bash
-git add .
-```
-
-Commit the changes.
-
-```bash
-git commit -m "added scraper workflow"
-```
-
-Push to GitHub.
-
-```bash
-git push origin main
 ```
