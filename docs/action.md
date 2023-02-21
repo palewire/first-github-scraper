@@ -19,22 +19,26 @@ Navigate back to the GitHub repo and click on the Actions tab.
 This page will display a log of the Action we configure.
 
 ![github actions page](./_static/actions-page.png)
-<!-- 
-Click on "set up a workflow yourself," which will take you to a starter template created by GitHub. 
 
-![github actions page](./_static/actions-link.png)  Click on simple workflow instead-->
+Let's start by running a simple workflow as a test. In the "Simple workflow," click the "Configure" button
+
+![github actions page](./_static/action-sample-workflow.png)  
+
+Let's rename this workflow file `test.yml`, like so:
+
+![github actions page](./_static/action-sample-name.png)  
 
 Without changing anything, push the green "Start commit" button.
 
-![commit the action](./_static/actions-commit.png)
+![commit the action](./_static/action-test-start.png)
 
 When a popup appears, write a commit message like "create workflow" and commit the file to your repository but hitting the green button at the bottom.
 
-![commit popup](_static/actions-commit-button.png)
+![commit popup](_static/action-test-commit.png)
 
 After you commit, you will be navigated back to your repository’s Code tab. Note that a directory `.github` was created at the root. Inside it you will find a `workflows` directory with your action.
 
-![a new github/workflows directory is created](./_static/actions-directory.png)
+![a new github/workflows directory is created](./_static/action-test-filepath.png)
 
 ## Understand the generic Action
 
@@ -48,7 +52,7 @@ Notice that it logged the first run of the template workflow you just created.
 
 Click on "create workflow" next to the green check.
 
-![check out workflow](./_static/actions-green-check.png)
+![check out workflow](./_static/action-test-log-1.png)
 
 Click on "build" to dig into our Action’s activity.
 
@@ -310,9 +314,23 @@ jobs:
           echo test, and deploy your project.
 ```
 
-## Customize the workflow (Collab)
+## Customize the workflow (with `pip` and Google Collab)
 
 CREATE NEW BLANK WORKFLOW TO START WIRTING NEW ACTION FILE 
+
+Now, we'll create a similar workflow to trigger the run of our scraper at a particular interval.
+
+Let's go back to the "Actions" tab. Notice that our last Action's run is logged here. Click the "New workflow" button to build another workflow.
+
+![new workflow](_static/action-real-new.png)
+
+This time, we will create a workflow from scratch to run our scraper. Click on the blue link that says, "set up a workflow yourself."
+
+![new workflow](_static/action-create-workflow.png)
+
+This time, we will call our `yml` file, `main.yml`.
+
+![name new workflow](_static/action-name.png)
 
 
 GitHub Actions uses YAML syntax to define the workflow. These workflows are stored in the repository, in a hidden directory (denoted by the `.` in front of it) called `.github/workflows`.
@@ -394,7 +412,7 @@ jobs:
     steps:
 ```
 
-Next, we will tell the virtual machine that is hosting this Action to install Pipenv and Python 3, along with the libraries our scraper will use. 
+Next, we will tell the virtual machine that is hosting this Action to install Python 3, along with the libraries our scraper will use. 
 
 The `name` keyword denotes the title we give the step.
 
@@ -452,13 +470,19 @@ jobs:
       run: jupyter execute scrape.ipynb
 ```
 
-COMMIT THIS New WORKFLOW
+Let's commit this workflow to our repository. 
+
+Similar to how we committed our previous test workflow, let's click the green "Start commit." 
+
+Write a message for this commit — something like "create workflow" — and press the green "Commit new file" button.
+
+![commit the workflow](./_static/action-commit.png)
 
 ## Run the workflow manually
 
 Let's test the workflow we created on GitHub. Navigate back to your repository on and click on the 'Actions' tab.
 
-![run action on github](./_static/actions-third-time.png)
+![run action on github](./_static/actions-manual-tab.png)
 
 Click on "Scrape" under "All workflows."
 
@@ -484,7 +508,7 @@ Congratulations, you’ve run a scraper in the cloud.
 
 One problem: While GitHub was able to execute our scraper, we haven’t told it to commit the results back to the respository. The data you gathered isn't being saved anywhere. Yet.
 
-## Customize workflow - pipenv 
+## Customize workflow (Advanced, with `pipenv`)
 
 <!-- ## Pull the workflow from GitHub
 
