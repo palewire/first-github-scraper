@@ -12,14 +12,18 @@ This chapter will walk you through how to save the data in the repository, and s
 
 ## Log the result
 
-On your computer, navigate to the `main.yml` file in the `.github/workflows` directory. Open it in your code editor. 
+In your repo, navigate to the `main.yml` file in the `.github/workflows` directory. 
+
+Click the pencil icon on top of the file to edit it.
+
+![github action edit yml file](./_static/commit-edit-pencil.png)
 
 We will add commands to this file to ask GitHub to save the results of the scraper. 
 
-We will accomplish this by instructing the Action to `add`, `commit` and `push` changes after the scraper runs, so they will show up in our respository. This is very similar to the commands you would write to push local changes to GitHub the command line.
+We will accomplish this by instructing the Action to `add`, `commit` and `push` changes after the scraper runs, so they will show up in our respository. This is very similar to the commands you would write to push local changes on your computer to GitHub, either using GitHub Desktop or the command line.
 
 ```{code-block} yaml
-:emphasize-lines: 22-29
+:emphasize-lines: 21-29
 name: Scrape
 
 on:
@@ -32,15 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install pipenv
-      run: pipx install pipenv
     - uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-        cache: 'pipenv'
-    - run: pipenv install --python `which python`
+    - run: pip install notebook requests bs4
+    
     - name: Run scraper
-      run: pipenv run jupyter execute scrape.ipynb
+      run: jupyter execute scrape.ipynb
+    
     - name: Add and commit	
       run: |-	
         git add .	
@@ -50,16 +53,32 @@ jobs:
     - name: Push	
       run: git push
 ```
+
+Let's save these changes. Click on the green "Start commit" button, add a message — something like "added steps for committing data" — and click "Commit changes."
+
+![github action commit updates](./_static/commit-commit-changes.png)
+
 CHANGE SETTINGS TO ALLOW COMMIT
-## Commit your changes
 
-Save the YAML file and commit your changes to the GitHub repository.
+## Update repository settings
 
-```bash
-git add .
-git commit -m "added steps to save results"
-git push origin main
-```
+Normally, when you commit and push changes to your repository, either using GitHub Desktop (like we did in Step 1) or using the command line, GitHub knows that it's OK to accept those changes, since you are logged in to your account. 
+
+However, when GitHub Actions runs a workflow on a virtual computer, your repository automatically rejects the commits by default. We need to change this setting, so your repository accepts commits from the Actions you run.
+
+Head over the settings tab of your repository. 
+![repo settings](./_static/commit-settings.png)
+
+From the menu bar on the right, choose "Actions" and then "General."
+
+![repo settings>actions>general](./_static/commit-actions-general.png)
+
+
+At the very of the section under "Workflow permissions," select "Read and write permissions." Save your changes.
+
+![repo save changes](./_static/commit-settings-update.png)
+
+Now, you should be able to run the Action and the virtual machine that runs your workflow, will be able to commit and push changes to your repository.
 
 ## Run the Action
 
