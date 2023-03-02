@@ -22,8 +22,9 @@ We will add commands to this file to ask GitHub to save the results of the scrap
 
 We will accomplish this by instructing the Action to `add`, `commit` and `push` changes after the scraper runs, so they will show up in our respository. This is very similar to the commands you would write to push local changes on your computer to GitHub, either using GitHub Desktop or the command line.
 
-```{code-block} yaml
-:emphasize-lines: 21-29
+
+```{code-block} bash
+:emphasize-lines: 21-28
 name: Scrape
 
 on:
@@ -45,7 +46,7 @@ jobs:
       run: jupyter execute scrape.ipynb
     
     - name: Add and commit	
-      run: |-	
+      run: |
         git add .	
         git config user.name "Automated"	
         git config user.email "actions@users.noreply.github.com"	

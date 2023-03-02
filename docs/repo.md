@@ -37,7 +37,7 @@ There are several ways of interacting with the repository you created online in 
 We'll use a tool called [GitHub Desktop](https://desktop.github.com/), a GUI developed by GitHub to make communicate with the repository you created, today.
 
 ```{note}
-Advanced users take advantage of their computer's command line to have more control over managing their code on [github.com](https://github.com/). We cover this advanced method of cloning the repository in step [1.4](#id4). It requires using your computer’s command-line interface.
+Advanced users take advantage of their computer's command line to have more control over managing their code on [github.com](https://github.com/). We cover this advanced method of cloning the repository in step 1.4. It requires using your computer’s command-line interface.
 ```
 
 Head over to the GitHub Desktop website at [desktop.github.com](https://desktop.github.com/).
@@ -58,7 +58,7 @@ In the "Preferences" window, click "Sign In."
 
 ![GitHub Desktop settings 2](_static/repo-github-desktop-login-2.png)
 
-A window will show up prompting us to sign in to the account we created in [1.1.](#id1) through the browser.
+A window will show up prompting us to sign in to the account we created in [1.1] through the browser.
 
 ![GitHub Desktop browser sign in](_static/repo-github-desktop-browser.png)
 
@@ -66,13 +66,13 @@ Assuming you're already signed in to GitHub in your browser, this instance shoul
 
 ![GitHub Desktop browser authentication](_static/repo-github-desktop-browser-auth.png)
 
-Now, let's use GitHub Desktop to download the repo we created in [1.1](#id1) on your local computer in the next step.
+Now, let's use GitHub Desktop to download the repo we created in [1.1] on your local computer in the next step.
 
 ## Clone the repository
 
 There are numerous methods for downloading the code in an online repository, which GitHub calls "cloning." They are covered in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-This tutorial will demonstrate how to use GitHub Desktop (which we installed in step [1.2](#id2)) to download clone the repository (which we created in step [1.1](#id1)).
+This tutorial will demonstrate how to use GitHub Desktop (which we installed in step [1.2]) to download clone the repository (which we created in step [1.1]).
 
 In the GitHub Desktop app, click on the "Add" button, and then on the "Clone Repository" option.
 
@@ -103,7 +103,7 @@ Next we’ll install a Python web scraper and start downloading data.
 
 While there are numerous ways to interact with your repository on GitHub, advanced users generally use the command line for managing their files — also known pulling and pushing code — between their local machines and the remote repository on GitHub for more control.
 
-This **optional** section will demonstrate how to use the [`gh`](https://cli.github.com/) command-line utility to accomplish what we did in step [1.3](#id3). If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
+This **optional** section will demonstrate how to use the [`gh`](https://cli.github.com/) command-line utility to accomplish what we did in step [1.3]. If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
 
 
 ### Introduction to the command line
