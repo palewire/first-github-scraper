@@ -427,7 +427,7 @@ For those who are running scraper notebooks on collab or Jupyter Lab Desktop app
 Remember the imports for the scraper, your actions file will need to direct GithubActions to install them. 
 
 ```{code-block} yaml
-:emphasize-lines: 12-17
+:emphasize-lines: 12-16
 name: Scrape
 
 on:
@@ -449,7 +449,7 @@ jobs:
 Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` we will `run` the notebook using the `jupyter execute scrape.ipynb` command. 
 
 ```{code-block} yaml
-:emphasize-lines: 17-19
+:emphasize-lines: 17-18
 name: Scrape
 
 on:

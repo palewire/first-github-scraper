@@ -58,8 +58,6 @@ Let's save these changes. Click on the green "Start commit" button, add a messag
 
 ![github action commit updates](./_static/commit-commit-changes.png)
 
-CHANGE SETTINGS TO ALLOW COMMIT
-
 ## Update repository settings
 
 Normally, when you commit and push changes to your repository, either using GitHub Desktop (like we did in Step 1) or using the command line, GitHub knows that it's OK to accept those changes, since you are logged in to your account. 
@@ -136,15 +134,9 @@ Go to your actions file and replace the `Add and commit` section with the follow
 
 ## Check your work
 
-Run the action one more time and see if it fails. 
+Run the action one more time and make sure the issue is fixed. 
 
 ![github action sucess](./_static/commit4-copy.png)
 
-Now pull the repo back down to your local machine, and change a line in your `warn.csv`. 
-
-Push up and run the action one more time. Check to make sure changes have been committed to your repo.
-
-![github action check](./_static/commit5.png)
-
-It's possible that you may want your action to fail if there was nothing to commit. But there may be a better way - like designing a custom message to be sent out to a slack channel. 
+Great! Now your scraper is 🌟automated🌟. You will receive an email associated with your GitHub account if the action fails for whatever reason. We can "set it and forget it," but it's likely that you would want to know when data is updated. In the next chapter we will go over how to integrate slack for alerts. 
 
