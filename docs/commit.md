@@ -139,5 +139,5 @@ Run the action one more time and make sure the issue is fixed.
 
 ![github action sucess](./_static/commit4-copy.png)
 
-Great! Now your scraper is 🌟automated🌟. You will receive an email associated with your GitHub account if the action fails for whatever reason. We can "set it and forget it," but it's likely that you would want to know when data is updated. In the next chapter we will go over how to integrate slack for alerts. 
+Great! Now your scraper is 🌟automated🌟. You will receive an email associated with your GitHub account if the action fails for whatever reason. We can "set it and forget it," but it's likely that you would want to know when data is updated. In the next chapter we will go over how to integrate Slack into your actions file for customized alerts. 
 
