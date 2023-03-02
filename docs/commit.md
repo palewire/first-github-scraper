@@ -58,7 +58,7 @@ Let's save these changes. Click on the green "Start commit" button, add a messag
 
 ![github action commit updates](./_static/commit-commit-changes.png)
 
-CHANGE SETTINGS TO ALLOW COMMIT
+<!-- CHANGE SETTINGS TO ALLOW COMMIT -->
 
 ## Update repository settings
 
