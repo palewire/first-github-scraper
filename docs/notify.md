@@ -134,4 +134,4 @@ Now let's add one last slack message for a successful run with a brand new file 
 
 Delete the warn-data.csv file and run the action one more time. Because there has been a new file committed, your message will say "New file alert!"
 
-Congratulations! You’ve completed the class.
+Congratulations! You’ve completed the class!
