@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Run via GitHub Actions
 
 This chapter will walk you through how to create a GitHub Action that executes a scraper on a schedule.

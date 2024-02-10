@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # First GitHub Scraper
 
 A step-by-step introduction to free, automated web scraping with GitHub’s powerful [Actions feature](https://github.com/features/actions).

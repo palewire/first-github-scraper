@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Saving the data
 
 This chapter will walk you through how to save the data in the repository, and spot and fix common errors.  

@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Blast the results
 
 This chapter will walk you through creating custom slack messages depending on the outcome of your action. 

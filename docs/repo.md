@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Create a repository
 
 This chapter will walk you through how to make a repository hosted by GitHub that holds code you can edit on your local computer.

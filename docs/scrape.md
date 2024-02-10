@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Scrape data using google collab
 
 This chapter will guide you through the process of adding a Python web scraper to your repository.
