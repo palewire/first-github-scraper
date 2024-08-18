@@ -1,6 +1,6 @@
 # Run via GitHub Actions
 
-This chapter will walk you through how to create a GitHub Action that executes a scraper on a schedule.
+This chapter will walk you through creating a GitHub Action that executes a scraper on a schedule.
 
 ```{contents} Sections
   :depth: 1
@@ -33,7 +33,7 @@ When a popup appears, write a commit message like "create workflow" and commit t
 
 ![commit popup](_static/action-test-commit.png)
 
-After you commit, you will be navigated back to your repository’s Code tab. Note that a directory `.github` was created at the root. Inside it you will find a `workflows` directory with your action.
+After you commit, you will be led back to your repository’s Code tab. Note that a directory `.github` was created at the root. Inside it you will find a `workflows` directory with your action.
 
 ![a new github/workflows directory is created](./_static/action-test-filepath.png)
 
@@ -101,7 +101,7 @@ jobs:
           echo test, and deploy your project.
 ```
 
-This Action is triggered when there is a "pull" or a "push" to the repository's `main` branch. This Action just ran when we pushed our commit to the repository. These events are defined by this portion in the workflow. 
+This Action is triggered when there is a "pull" or a "push" to the repository's `main` branch. This Action just ran when we pushed our commit to the repository. These events are defined by this portion of the workflow. 
 
 ```{code-block} yaml
 :emphasize-lines: 6-11
@@ -418,10 +418,10 @@ The `uses` keyword specifies which version of the `actions/checkout` action to r
 The `run` keyword tells the job to execute a command on the runner.
 
 ```{note}
-For those who are running scraper notebooks on collab or Jupyter Lab Desktop apps see below. If you are using your scraper locally with pipenv skip to next section
+For those who are running scraper notebooks on Collab or Jupyter Lab Desktop apps see below. If you are using your scraper locally with pipenv skip to next section
 ```
 
-Remember the imports for the scraper, your actions file will need to direct GithubActions to install them. 
+Remember the imports for the scraper, your actions file will need to direct Github Actions to install them. 
 
 ```{code-block} yaml
 :emphasize-lines: 12-16
@@ -443,7 +443,7 @@ jobs:
     - run: pip install notebook requests bs4
 ```
 
-Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` we will `run` the notebook using the `jupyter execute scrape.ipynb` command. 
+Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` since we will `run` the notebook using the `jupyter execute scrape.ipynb` command. 
 
 ```{code-block} yaml
 :emphasize-lines: 17-18
@@ -523,7 +523,7 @@ CREATE A NEW BLANK WORKFLOW THIS TIME TO START WRITING NEW ACTION FILE FOR SCRAP
 -->
 
 ```{note}
-For those who running scraper locally with pipenv. 
+For those who are running the scraper locally with pipenv. 
 ```
 
 ```{code-block} yaml
@@ -553,7 +553,7 @@ jobs:
 GitHub has a detailed explanation of every keyword in the workflow on [this](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#understanding-the-workflow-file) page.
 ```
 
-Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` we will `run` the notebook using the `pipenv jupyter execute scrape.ipynb` command. 
+Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` since we will `run` the notebook using the `pipenv jupyter execute scrape.ipynb` command. 
 
 ```{code-block} yaml
 :emphasize-lines: 20-21

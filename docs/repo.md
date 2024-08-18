@@ -1,6 +1,6 @@
 # Create a repository
 
-This chapter will walk you through how to make a repository hosted by GitHub that holds code you can edit on your local computer.
+This chapter will walk you through creating a repository hosted by GitHub that will hold code you can edit on your local computer.
 
 ```{contents} Sections
   :depth: 1
@@ -29,9 +29,9 @@ Make sure the repo is public, which ensures your scraper will run for free. Then
 
 ## Enter GitHub Desktop
 
-There are several ways of interacting with the repository you created online in the previous step from your local machine.
+There are several ways to interact with the repository you created online in the previous step from your local machine.
 
-We'll use a tool called [GitHub Desktop](https://desktop.github.com/), a GUI developed by GitHub to make communicate with the repository you created, today.
+We'll use a tool called [GitHub Desktop](https://desktop.github.com/), a Graphical User Interface (GUI) developed by GitHub to communicate with the repository you just created.
 
 ```{note}
 Advanced users take advantage of their computer's command line to have more control over managing their code on [github.com](https://github.com/). We cover this advanced method of cloning the repository in step 1.4. It requires using your computer’s command-line interface.
@@ -47,7 +47,7 @@ Depending on the directory you downloaded GitHub Desktop to, you should see a ne
 
 ![GitHub Desktop app downloaded](_static/repo-github-desktop-save.png)
 
-Let's open the application, and sign in. Open the settings window of the application.
+Let's open the application and sign in. Open the settings window of the application.
 
 ![GitHub Desktop settings 1](_static/repo-github-desktop-login-1.png)
 
@@ -55,33 +55,33 @@ In the "Preferences" window, click "Sign In."
 
 ![GitHub Desktop settings 2](_static/repo-github-desktop-login-2.png)
 
-A window will show up prompting us to sign in to the account we created in [1.1] through the browser.
+A window will show up prompting us to sign in to the account we created in [1.1](#id2) through the browser.
 
 ![GitHub Desktop browser sign in](_static/repo-github-desktop-browser.png)
 
-Assuming you're already signed in to GitHub in your browser, this instance should will automatically authenticate your account and direct you back to the GitHub Desktop application.
+Assuming you're already signed in to GitHub in your browser, this instance should automatically authenticate your account and direct you back to the GitHub Desktop application.
 
 ![GitHub Desktop browser authentication](_static/repo-github-desktop-browser-auth.png)
 
-Now, let's use GitHub Desktop to download the repo we created in [1.1] on your local computer in the next step.
+Now, let's use GitHub Desktop to download the repo we created in [1.1](#id2) onto your local computer in the next step.
 
 ## Clone the repository
 
 There are numerous methods for downloading the code in an online repository, which GitHub calls "cloning." They are covered in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-This tutorial will demonstrate how to use GitHub Desktop (which we installed in step [1.2]) to download clone the repository (which we created in step [1.1]).
+This tutorial will demonstrate how to use GitHub Desktop (which we installed in step [1.2](#id3)) to download clone the repository (which we created in step [1.1](#id2)).
 
-In the GitHub Desktop app, click on the "Add" button, and then on the "Clone Repository" option.
+In the GitHub Desktop app, click the "Add" button, and then select the "Clone Repository" option.
 
 ![GitHub Desktop clone the repo](_static/repo-github-desktop-clone-1.png)
 
-A window will show up asking us which repository associated with our GitHub account we would like to clone on our computer.
+A window will show up asking which repository associated with your GitHub account you would like to clone to your computer.
 
 ![GitHub Desktop clone the GitHub Scraper repo](_static/repo-github-desktop-clone-2.png)
 
 As you start typing the name of the repository — "my-first-github-scraper" — you will see it listed in the dropdown options.
 
-In this window, you will see an option for specifying a "Local Path." This is the directory on your computer in which the repository will be cloned. In my case, it is in a directory called `Code.`
+In this window, you will see an option for specifying a "Local Path." This is the directory on your computer to which the repository will be cloned. In my case, it is in a directory called `Code.`
 
 ![GitHub Desktop repo local path](_static/repo-github-desktop-local-path.png)
 
@@ -100,13 +100,13 @@ Next we’ll install a Python web scraper and start downloading data.
 
 While there are numerous ways to interact with your repository on GitHub, advanced users generally use the command line for managing their files — also known pulling and pushing code — between their local machines and the remote repository on GitHub for more control.
 
-This **optional** section will demonstrate how to use the [`gh`](https://cli.github.com/) command-line utility to accomplish what we did in step [1.3]. If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
+This **optional** section will demonstrate how to use the [`gh`](https://cli.github.com/) command-line utility to accomplish what we did in step [1.3](#id4). If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
 
 
 ### Introduction to the command line
 Whether you know it or not, there is a way to open a special window and directly issue commands to your operating system. Different systems give this tool slightly different names, but they all have some form of it.
 
-On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Others may call it the “command line.” They’re the same thing, just in different slightly shapes.
+On Windows this is called the “command prompt.” On MacOS it is called the “terminal.” Others may call it the “command line.” They’re the same thing, just in slightly different shapes.
 
 This is the tool we’ll use to make a copy of your repository on your computer. Depending on your operating system and personal preferences, open a terminal program so we can get started.
 
@@ -136,7 +136,7 @@ Using GitHub Desktop took care of this step for us. However, if we were to use `
 
 We will use the [`mkdir`](https://en.wikipedia.org/wiki/Mkdir) command to create a new directory in the same style as the Desktop, Documents and Downloads folders included by most operating systems.
 
-We will name this folder `Code`. To verify the command works, open the file explorer and navigate to your home folder. After it’s run, you should see the new directory alongside the rest.
+We will name this folder `Code`. To verify the command works, open the file explorer and navigate to your home folder. After it has run, you should see the new directory alongside the rest.
 
 ```bash
 mkdir Code
