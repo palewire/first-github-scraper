@@ -9,7 +9,7 @@ This chapter will guide you through the process of adding a Python web scraper t
 
 ## Download a scraper
 
-The mechanics of how to devise a web scraper are beyond the scope of this class. Rather than craft our own, we will use the scraper created as part of the [“Ẅeb Scraping with Python”](https://github.com/ireapps/teaching-guide-python-scraping/blob/master/Web%20scraping%20with%20Python.ipynb) class put on by [Investigative Reporters and Editors](https://www.ire.org/). If you'd like to learn more about the scraping process, follow [their tutorial](https://github.com/ireapps/teaching-guide-python-scraping/blob/master/Web%20scraping%20with%20Python.ipynb).
+The mechanics of devising a web scraper are beyond the scope of this class. Rather than craft our own, we will use the scraper created as part of the [“Ẅeb Scraping with Python”](https://github.com/ireapps/teaching-guide-python-scraping/blob/master/Web%20scraping%20with%20Python.ipynb) class put on by [Investigative Reporters and Editors](https://www.ire.org/). If you'd like to learn more about the scraping process, check out [their tutorial](https://github.com/ireapps/teaching-guide-python-scraping/blob/master/Web%20scraping%20with%20Python.ipynb).
 
 ![ire class](_static/scraper-ire.png)
 
@@ -21,13 +21,13 @@ The routine is trained to download [WARN Act](https://en.wikipedia.org/wiki/Work
 If you’re interested in getting more involved with tracking WARN Act notices, investigate the [scraping system maintained by Stanford’s Big Local News](https://github.com/biglocalnews/warn-scraper) project. It scrapes filings from dozens of different state websites, consolidating them into a single file. That process is automated via, you guessed it, a [GitHub Action](https://github.com/biglocalnews/warn-github-flow).
 ```
 
-There are different ways to run and test this scraper. This section will show you how to install Python tools on your computer to run this locally. If you want to learn how to run this notebook without installing them, skip to section 3. 
+There are different ways to run and test this scraper. This section will show you how to install Python tools on your computer to run this locally. If you want to learn how to run this notebook without installing them, [skip to section 3]((https://palewi.re/docs/first-github-scraper/scrape.html)). 
 
 ## Install pipenv
 
 Our web scraper will depend on a set of Python tools that we’ll need to install before we can run the code.
 
-They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data out of HTML.
+They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data from HTML.
 
 JupyterLab is required to run the `.ipynb` notebook file. We can tell `requests` and `bs4` will be necessary because they are imported at the top of the script, as seen on GitHub.
 
@@ -94,7 +94,7 @@ pipenv install jupyterlab requests bs4
 ```
 
 ```{note}
-Save yourself some hassle; Copy and paste the command. There’s no shame. It’s the best way to avoid typos.
+Save yourself some hassle by copying and pasting the command. There’s no shame. It’s the best way to avoid typos.
 ```
 
 When you invoke the `install` command, `pipenv` checks for an existing virtual environment connected to your project’s directory. Finding none, it creates a new environment and installs your packages into it.
@@ -176,7 +176,7 @@ git config --global user.name "your name"
 Then run the `commit` command above again.
 ````
 
-The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on github.com. This is done via the [`push`](https://git-scm.com/docs/git-push) tool. This complicated `git` command requires two inputs.
+The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on Github. This is done via the [`push`](https://git-scm.com/docs/git-push) tool. This complicated `git` command requires two inputs.
 
 First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default name is `origin`.
 

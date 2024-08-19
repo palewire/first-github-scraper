@@ -1,4 +1,4 @@
-# Scrape data using google collab
+# Scrape data using Google Collab
 
 This chapter will guide you through the process of adding a Python web scraper to your repository.
 
@@ -23,9 +23,9 @@ If you’re interested in getting more involved with tracking WARN Act notices, 
 
 ## Verify what tools are being used
 
-If you want to run the web scraper locally, we will need to install set of Python tools.
+If you want to run the web scraper locally, we will need to install a set of Python tools.
 
-They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data out of HTML.
+They are the [JupyterLab](https://jupyter.org/) computational notebook, the [requests](https://docs.python-requests.org/en/latest/) library for downloading webpages and [BeautifulSoup](https://beautiful-soup-4.readthedocs.io/en/latest/), a handy utility for parsing data from HTML.
 
 JupyterLab is required to run the `.ipynb` notebook file. We can tell `requests` and `bs4` will be necessary because they are imported at the top of the script, as seen on GitHub.
 
@@ -33,28 +33,28 @@ JupyterLab is required to run the `.ipynb` notebook file. We can tell `requests`
 
 By default, Python's third-party packages are installed in a shared folder somewhere in the depths of your computer. Unless told otherwise, every Python project will draw from this common pool of programs.
 
-To run this notebook locally on your computer check out section 2 of this documentation - [Scrape data locally](https://palewi.re/docs/first-github-scraper/scrape-locally.html). Section 2 and 3 are interchangeable - whether you would want to run this locally or on a web browser (which is covered on this section) is up to you.
+To run this notebook locally on your computer check out [section 2]((https://palewi.re/docs/first-github-scraper/scrape-locally.html)) of this documentation. Section 2 and 3 are interchangeable - whether you would want to run this locally or on a web browser (which is covered on this section) is up to you.
 
-A simpler way to run a notebook without installing Python and its libraries is to use [Google Collab](https://colab.research.google.com/). Google Collab is a product from Google research that allows you to run python code on your browser - and it's free! It's an easy way to get started on using jupyter notebook without having to install all its requirements.
+A simpler way to run a notebook without installing Python and its libraries is to use [Google Collab](https://colab.research.google.com/). Google Collab is a product from Google research that allows you to run python code on your browser - and it's free! It's an easy way to start using Jupyter notebook without having to install all its requirements.
 
 ## Import and the scraper on Google Collab
 
-Make your way to [Goolge Collab](https://colab.research.google.com/) - you will need a google account and sign in. Choose the Github button and add the [link](https://github.com/palewire/first-github-scraper/blob/main/scrape.ipynb) to our scraper. Hit the search button. 
+Make your way to [Goolge Collab](https://colab.research.google.com/) - you will need a to have a Google account and sign in to it. Choose the Github button and add the [link](https://github.com/palewire/first-github-scraper/blob/main/scrape.ipynb) to our scraper. Hit the search button. 
 
 ![collab front page](_static/scraper-collab-front.png)
 
-This will open up the notebook on your browser. First, let's make sure to save a copy of this scraper in our google drive. Go to File -> Save a copy in Drive. This will allow you to run the scraper on your collab account without having to search for the GitHub link.
+This will open up the notebook on your browser. First, let's make sure to save a copy of this scraper in our Google Drive. Go to File -> Save a copy in Drive. This will allow you to run the scraper on your Collab account without having to search for the GitHub link.
 
 
 ## Run the scraper
 
-Notebooks are comprised of "cells" where you can add your code. You have to execute each line of code in your cell by "running" the cell. You can do this in many ways. Try clicking the play button on the left side of the cell. If you are familiar with Jupyter notebooks, you'll find that keyboard shortcuts like SHIFT + ENTER will work to the cell as well. You can also run the notebook from top to bottom once, by clicking on Runtime --> Run all. Notice our last cell, which creates a warn-data.csv. Click on the folder icon at the bottom of left panel to see your file. 
+Notebooks are composed of "cells" in which you can add your code. You have to execute each line of code in your cell by "running" the cell. You can do this in many ways. Try clicking the play button on the left side of the cell. If you are familiar with Jupyter notebooks, you'll find that keyboard shortcuts like SHIFT + ENTER will work on the cell as well. You can also run the notebook from top to bottom all at once by clicking on Runtime --> Run all. Notice our last cell, which creates a warn-data.csv. Click on the folder icon at the bottom of left panel to see your file. 
 
 
 ![collab notebook ](_static/scraper-collab-notebook.png)
 
 
-You should see a new file named `warn-data.csv` created by the scraper. Clicking on the Mount Drive icon on the top of the folder panel will create a new cell in your notebook. If you run the cell, it will create a link to your google drive and allow you to drag your output into drive. You can also download the csv to your computer by right clicking on the csv file. 
+You should see a new file named `warn-data.csv` created by the scraper. Clicking on the Mount Drive icon on the top of the folder panel will create a new cell in your notebook. If you run the cell, it will create a link to your Google Drive and allow you to drag your output into Drive. You can also download the csv to your computer by right clicking on the csv file. 
 
 
 Open it in the spreadsheet program of your choice. You should see the data from [Maryland’s site](https://www.dllr.state.md.us/employment/warn.shtml) structured and ready to analyze.
@@ -62,12 +62,12 @@ Open it in the spreadsheet program of your choice. You should see the data from 
 
 ## Save to GitHub
 
-Now we'll log our work in our repository using GitHub Desktop. First let's download the files we want to keep in our repository. Go to your google drive page, right click and download your scraper notebook. It should be an `ipynb` file. 
+Now we'll log our work in our repository using GitHub Desktop. First let's download the files we want to keep in our repository. Go to your Google Drive page, right click and download your scraper notebook. It should be an `ipynb` file. 
 
-Open your desktop and click on "View the files of your repository in Finder". Drag the downloaded scrape.ipynb file to the folder. You will see the file on the right pannel. You can leave a specific commit message (as a default it will say "Create scrape.ipynb"). Click on "Commit to main". Then click "Push to origin".
+Open your desktop and click on "View the files of your repository in Finder". Drag the downloaded scrape.ipynb file to the folder. You will see the file in the right panel. You can leave a specific commit message (as a default it will say "Create scrape.ipynb"). Click on "Commit to main". Then click "Push to origin".
 
 ![github desktop](_static/scraper-github.png)
 
-Now you will see your scraper on your github. 
+Now you will see your scraper in your Github repository. 
 
 Next we'll learn how to create a GitHub Action that can automatically run your scraper every day.

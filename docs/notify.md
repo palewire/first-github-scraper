@@ -1,6 +1,6 @@
 # Blast the results
 
-This chapter will walk you through creating custom slack messages depending on the outcome of your action. 
+This chapter will walk you through creating custom Slack messages depending on the outcome of your action. 
 
 ```{contents} Sections
   :depth: 1
@@ -8,15 +8,15 @@ This chapter will walk you through creating custom slack messages depending on t
 ```
 
 ## What kind of alerts do you need?
-Now that your scrape has been automated, let's talk about alerts. You may want to receive alerts for following scenarios 
+Now that your scraper has been automated, let's talk about alerts. You may want to receive alerts for the following scenarios 
 1. Your action succeeded, but nothing new was committed
 2. Your action succeeded, and there's new data 
 3. Your action failed 😔
 
 ## Send a message with Slack's Incoming Webhooks
-Join `#nicar23` at nicar-2023-sandbox.slack.com. You should have received an email invite to slack, along with a Google Doc containing a webhook. 
+Join `#nicar23` at nicar-2023-sandbox.slack.com. You should have received an email invite to Slack, along with a Google Doc containing a webhook. 
 
-Slack's incoming webhooks allow you to send messages from your apps. Visit [slack](https://api.slack.com/messaging/webhooks) for instructions on how to create one for your channel.  
+Slack's incoming webhooks allow you to send messages from your apps. Visit [Slack](https://api.slack.com/messaging/webhooks) for instructions on how to create one for your channel.  
 
 Let's send a simple message using the channel's webhook.
 
@@ -28,15 +28,15 @@ curl -d '{"text":"Hello world. I am Iris :wave:"}'  WEBHOOK
 
 If your repository is public, you probably want to hide your webhook from others. You can do this by using [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets). 
 
-To add the webhook to your GitHub secrets, go to your repo and click on `Settings`. On the left corner you will see `Secrets` dropdown menu. Select `Actions`. Then select `New repository secrets` button on the top right corner.
+To add the webhook to your GitHub Secrets, go to your repo and click on `Settings`. In the left corner you will see the `Secrets` dropdown menu. Select `Actions`. Then select the `New repository secrets` button in the top right corner.
 
 ![github secrets](./_static/notify1.png)
 
 Copy the webhook and add as a secret. Name it `SLACK_WEBHOOK`
 
-### Customizing your slack messages
+### Customizing your Slack messages
 
-We will be using [Slack Incoming Webhook](https://github.com/marketplace/actions/slack-incoming-webhook) action from the GitHub Actions Marketplace.
+We will be using the [Slack Incoming Webhook](https://github.com/marketplace/actions/slack-incoming-webhook) action from the GitHub Actions Marketplace.
 
 Copy the code below. This step will send a message once your action is completed 
 
@@ -86,9 +86,9 @@ The "Success" message will be sent whether or not a new file was committed. To d
 
 In actions, some steps can create an [output](https://github.com/marketplace/actions/add-commit#outputs) that can be referenced in another step. 
 
-Outputs are formatted like so `steps.<action id>.outputs.<output name>`. We will be using the `committed` output, which is listed on the action's [documentation](https://github.com/marketplace/actions/add-commit#outputs). 
+Outputs are formatted like so: `steps.<action id>.outputs.<output name>`. We will be using the `committed` output, which is listed in the action's [documentation](https://github.com/marketplace/actions/add-commit#outputs). 
 
-Let's go back to your first slack message and specify the message for a successful scrape without changes. Change the condition from `sucess()` to 
+Let's go back to your first Slack message and specify the message for a successful scrape without changes. Change the condition from `success()` to 
 
 ```yaml
 if: (success() && steps.add_commit.outputs.committed=='false')
@@ -99,7 +99,7 @@ And change the message to
 text: Nothing was committed.
 ```
 
-Now let's add one last slack message for a successful run with a brand new file commit. 
+Now let's add one last Slack message for a successful run with a brand new file commit. 
 
 ```yaml
     - name: Slack Notification on no new commits

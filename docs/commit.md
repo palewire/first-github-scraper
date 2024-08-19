@@ -1,6 +1,6 @@
 # Saving the data
 
-This chapter will walk you through how to save the data in the repository, and spot and fix common errors.  
+This chapter will walk you through saving the data in your repository and spotting and fixing common errors.  
 
 ```{contents} Sections
   :depth: 1
@@ -70,11 +70,11 @@ From the menu bar on the right, choose "Actions" and then "General."
 ![repo settings>actions>general](./_static/commit-actions-general.png)
 
 
-At the very of the section under "Workflow permissions," select "Read and write permissions." Save your changes.
+At the very top of the section under "Workflow permissions," select "Read and write permissions." Save your changes.
 
 ![repo save changes](./_static/commit-settings-update.png)
 
-Now, you should be able to run the Action and the virtual machine that runs your workflow, will be able to commit and push changes to your repository.
+Now, you should be able to run the Action, and the virtual machine that runs your workflow will be able to commit and push changes to your repository.
 
 ## Run the Action
 
@@ -87,7 +87,7 @@ After the Action has run, go to the "Code" tab on GitHub, and notice a new `warn
 ![github actions success see logged file in repo](./_static/actions-success-final.png)
 
 ```{note}
-When the Action runs, it saves the data files to GitHub. The next time you want to make modifications to your code in the repository, you need to first pull the most recent changes from the remote branch on GitHub to your computer, before committing and pushing anymore changes. 
+When the Action runs, it saves the data files to GitHub. The next time you want to make modifications to your code in the repository, you'll first need to pull the most recent changes from the remote branch on GitHub to your computer before committing and pushing any more changes. 
 
 Use the `git fetch` and `git pull` commands from the command line.
 ```
@@ -108,13 +108,13 @@ To find out what went wrong with your action, click into your job.
 ![github action fail](./_static/commit3.png)
 
 This action failed because there was nothing to commit when your scrape notebook `scrape.ipynb` ran for the second time. 
-If the site you want to scrape updates sporadically, having nothing new to commit from every scrape won't be an issue. Let's find a way to allow github actions to succeed even if there is nothing to commit. 
+If the site you want to scrape updates sporadically, having nothing new to commit from every scrape won't be an issue. Let's find a way to allow Github Actions to succeed even if there is nothing to commit. 
 
 ## Add an action from Github Marketplace
 
-We can easily change few lines on our code to make sure action succeeds regardless of an actual commit. However, common actions used in workflows can be found in github actions [marketplace](https://github.com/marketplace?type=actions). These actions ca  have more options that will be useful for us later on.
+We can easily change few lines in our code to make sure an action succeeds regardless of an actual commit. However, common actions used in workflows can be found in the Github Actions [Marketplace](https://github.com/marketplace?type=actions). These actions have more options that will be useful for us later on.
 
-Let's use [this](https://github.com/marketplace/actions/add-commit) github actions to add and commit our work. 
+Let's use [this](https://github.com/marketplace/actions/add-commit) Github Action to add and commit our work. 
 
 The [examples](https://github.com/marketplace/actions/add-commit#examples) section will show you how to add this action to your existing workflow. 
 
@@ -136,5 +136,5 @@ Run the action one more time and make sure the issue is fixed.
 
 ![github action sucess](./_static/commit4-copy.png)
 
-Great! Now your scraper is 🌟automated🌟. You will receive an email associated with your GitHub account if the action fails for whatever reason. We can "set it and forget it," but it's likely that you would want to know when data is updated. In the next chapter we will go over how to integrate Slack into your actions file for customized alerts. 
+Great! Now your scraper is 🌟automated🌟. You will receive an email associated with your GitHub account if the action fails for whatever reason. We can "set it and forget it," but it's likely that you want to know when data is updated. In the next chapter we will go over how to integrate Slack into your actions file for customized alerts. 
 
