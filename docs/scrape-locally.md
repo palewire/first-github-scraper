@@ -23,7 +23,7 @@ If you’re interested in getting more involved with tracking WARN Act notices, 
 
 There are different ways to run and test this scraper. This section will show you how to install Python tools on your computer to run this locally. If you want to learn how to run this notebook without installing them, [skip to section 3]((https://palewi.re/docs/first-github-scraper/scrape.html)). 
 
-## Install pipenv
+## Install uv
 
 Our web scraper will depend on a set of Python tools that we’ll need to install before we can run the code.
 
@@ -49,61 +49,61 @@ Strictly speaking, working within a virtual environment is not required. At firs
 You don’t have to take our word for it, you can read discussions on [StackOverflow](https://conda.io/docs/index.html) and [Reddit](https://www.reddit.com/r/Python/comments/2qq1d9/should_i_always_use_virtualenv/).
 ```
 
-There are several different ways to run a virtual environment. In this tutorial, we will take advantage of [`pipenv`](https://pipenv.kennethreitz.org/en/latest/), a widely used tool that is [recommended](https://packaging.python.org/en/latest/guides/tool-recommendations/) by leaders in the Python community.
+There are several different ways to run a virtual environment. In this tutorial, we will take advantage of [`uv`](https://docs.astral.sh/uv/), a fast Python package and project manager.
 
-Like the commands we've already learned, `pipenv` is executed with your computer’s command-line interface. You can verify it’s there by typing the following into your terminal:
+Like the commands we've already learned, `uv` is executed with your computer’s command-line interface. You can verify it’s there by typing the following into your terminal:
 
 ```bash
-pipenv --version
+uv --version
 ```
 
 If you have it installed, you should see the terminal respond with the version on your machine. That will look something like this:
 
 ```bash
-pipenv, version 2021.11.23
+uv 0.11.29
 ```
 
-If you get an error that says `pipenv` isn’t present, you will need to install it.
+If you get an error that says `uv` isn’t present, you will need to install it.
 
-If you are on a Mac, the `pipenv` maintainers [recommend](https://pipenv.kennethreitz.org/en/latest/install/#homebrew-installation-of-pipenv) installing via the [Homebrew](https://brew.sh/) package manager, like so:
+If you are on a Mac, you can install it via the [Homebrew](https://brew.sh/) package manager, like so:
 
 ```bash
-brew install pipenv
+brew install uv
 ```
 
 If you are on Windows and using the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), you can use Homebrew’s cousin [Linuxbrew](https://docs.brew.sh/Homebrew-on-Linux) to install Pipenv.
 
-If neither option makes sense for you, the `pipenv` [documentation](https://pipenv.kennethreitz.org/en/latest/install/#pragmatic-installation-of-pipenv) recommends an [install](https://pip.pypa.io/en/stable/user_guide/#user-installs) via another Python tool, [`pip`](https://pypi.org/project/pip/):
+If neither option makes sense for you, the `uv` documentation recommends the standalone installer:
 
 ```bash
-pip install --user pipenv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Whatever installation route you choose, you can confirm your success by asking for the `pipenv` version, as we did above.
+Whatever installation route you choose, you can confirm your success by asking for the `uv` version, as we did above.
 
 ```bash
-pipenv --version
+uv --version
 ```
 
 ## Install Python tools
 
-Now let's use `pipenv` to install our Python packages. We can add them to our project's virtual environment by typing their names after the `install` command.
+Now let's use `uv` to install our Python packages. We can add them to our project's virtual environment by typing their names after the `install` command.
 
 ```bash
-pipenv install jupyterlab requests bs4
+uv add jupyterlab requests bs4
 ```
 
 ```{note}
 Save yourself some hassle by copying and pasting the command. There’s no shame. It’s the best way to avoid typos.
 ```
 
-When you invoke the `install` command, `pipenv` checks for an existing virtual environment connected to your project’s directory. Finding none, it creates a new environment and installs your packages into it.
+When you invoke the `install` command, `uv` checks for an existing virtual environment connected to your project’s directory. Finding none, it creates a new environment and installs your packages into it.
 
 The packages we’ve requested are downloaded and installed from the [Python Package Index](https://pypi.org/), an open directory of free tools. Each of our programs has a page there. For instance, JupyterLab is indexed at [pypi.org/project/jupyterlab](https://pypi.org/project/jupyterlab/). 
 
-When the installation finishes, two files will added to your project directory: `Pipfile` and `Pipfile.lock`. Open them in a text editor and you’ll see how they describe your project’s Python requirements.
+When the installation finishes, two files will be added to your project directory: `pyproject.toml` and `uv.lock`. Open them in a text editor and you’ll see how they describe your project’s Python requirements.
 
-In the `Pipfile`, you'll find the name and version of the packages we directed `pipenv` to install. We didn’t specify an exact version, so you’ll see something like:
+In `pyproject.toml`, you'll find the name and version of the packages we directed `uv` to install. We didn’t specify an exact version, so you’ll see something like:
 
 ```
 [packages]
@@ -112,18 +112,18 @@ requests = "*"
 bs4 = "*"
 ```
 
-`Pipfile.lock` has a more complicated, nested structure that specifies the exact version of your project‘s direct dependencies, along with all their sub-dependencies. It’s a complete blueprint for how to install your project on any computer.
+`uv.lock` has a more complicated, nested structure that specifies the exact version of your project‘s direct dependencies, along with all their sub-dependencies. It’s a complete blueprint for how to install your project on any computer.
 
 ## Run the scraper
 
 With your Python tools installed, you’re ready to run the scraper. JupyterLab comes equipped with a special command — `jupyter execute` — that can run any `.ipynb` file from the command line.
 
-Since JupyterLab was installed inside of a `pipenv` virtual environment, you’ll need to invoke it with the `pipenv run` command to access the special container where our programs were installed.
+Since JupyterLab was installed inside of a `uv` virtual environment, you’ll need to invoke it with the `uv run` command to access the special container where our programs were installed.
 
 Here's how to do it. Give it a try.
 
 ```bash
-pipenv run jupyter execute scrape.ipynb
+uv run jupyter execute scrape.ipynb
 ```
 
 Once it finishes, list out the files in your directory with the `ls` command.
@@ -151,8 +151,8 @@ Run it and your terminal should list out the four files we added to the reposito
 ```bash
 git add scrape.ipynb
 git add warn-data.csv
-git add Pipfile
-git add Pipfile.lock
+git add pyproject.toml
+git add uv.lock
 ```
 
 ```{note}
