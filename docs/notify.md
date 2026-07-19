@@ -24,7 +24,7 @@ Let's send a simple message using the channel's webhook.
 curl -d '{"text":"Hello world. I am Iris :wave:"}'  WEBHOOK
 ```
 
-## Save the Webook as a GitHub Secret
+## Save the Webhook as a GitHub Secret
 
 If your repository is public, you probably want to hide your webhook from others. You can do this by using [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets). 
 

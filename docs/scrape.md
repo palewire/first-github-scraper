@@ -1,4 +1,4 @@
-# Scrape data using Google Collab
+# Scrape data using Google Colab
 
 This chapter will guide you through the process of adding a Python web scraper to your repository.
 
@@ -35,15 +35,15 @@ By default, Python's third-party packages are installed in a shared folder somew
 
 To run this notebook locally on your computer check out [section 2]((https://palewi.re/docs/first-github-scraper/scrape-locally.html)) of this documentation. Section 2 and 3 are interchangeable - whether you would want to run this locally or on a web browser (which is covered on this section) is up to you.
 
-A simpler way to run a notebook without installing Python and its libraries is to use [Google Collab](https://colab.research.google.com/). Google Collab is a product from Google research that allows you to run python code on your browser - and it's free! It's an easy way to start using Jupyter notebook without having to install all its requirements.
+A simpler way to run a notebook without installing Python and its libraries is to use [Google Colab](https://colab.research.google.com/). Google Colab is a product from Google Research that allows you to run Python code in your browser - and it's free! It's an easy way to start using Jupyter notebook without having to install all its requirements.
 
-## Import and the scraper on Google Collab
+## Import and run the scraper on Google Colab
 
-Make your way to [Goolge Collab](https://colab.research.google.com/) - you will need a to have a Google account and sign in to it. Choose the Github button and add the [link](https://github.com/palewire/first-github-scraper/blob/main/scrape.ipynb) to our scraper. Hit the search button. 
+Make your way to [Google Colab](https://colab.research.google.com/) - you will need to have a Google account and sign in to it. Choose the Github button and add the [link](https://github.com/palewire/first-github-scraper/blob/main/scrape.ipynb) to our scraper. Hit the search button.
 
 ![collab front page](_static/scraper-collab-front.png)
 
-This will open up the notebook on your browser. First, let's make sure to save a copy of this scraper in our Google Drive. Go to File -> Save a copy in Drive. This will allow you to run the scraper on your Collab account without having to search for the GitHub link.
+This will open up the notebook on your browser. First, let's make sure to save a copy of this scraper in our Google Drive. Go to File -> Save a copy in Drive. This will allow you to run the scraper on your Colab account without having to search for the GitHub link.
 
 
 ## Run the scraper
