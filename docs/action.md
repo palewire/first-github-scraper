@@ -311,7 +311,7 @@ jobs:
           echo test, and deploy your project.
 ```
 
-## Customize the workflow (with `pip` and Google Collab)
+## Customize the workflow (with `pip` and Google Colab)
 
 <!-- CREATE NEW BLANK WORKFLOW TO START WIRTING NEW ACTION FILE  -->
 
@@ -477,7 +477,7 @@ Write a message for this commit — something like "create workflow" — and pr
 
 ## Run the workflow manually
 
-Let's test the workflow we created on GitHub. Navigate back to your repository on and click on the 'Actions' tab.
+Let's test the workflow we created on GitHub. Navigate back to your repository and click on the 'Actions' tab.
 
 ![run action on github](./_static/actions-manual-tab.png)
 
@@ -503,7 +503,7 @@ Within a minute or two, the job should complete. The yellow dot will turn green.
 
 Congratulations, you’ve run a scraper in the cloud.
 
-One problem: While GitHub was able to execute our scraper, we haven’t told it to commit the results back to the respository. The data you gathered isn't being saved anywhere. Yet.
+One problem: While GitHub was able to execute our scraper, we haven’t told it to commit the results back to the repository. The data you gathered isn't being saved anywhere. Yet.
 
 ## Optional: Customize workflow (Advanced, with `pipenv`)
 

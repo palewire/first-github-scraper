@@ -17,7 +17,7 @@ If you have an account, you should [log in](https://github.com/login). If you do
 
 ![signed in](_static/repo-github-signin-2023.png)
 
-Click the green button in upper-left corner to create a [new code repository](https://github.com/new).
+Click the green button in the upper-left corner to create a [new code repository](https://github.com/new).
 
 ![new repo button](_static/repo-github-button-new-2023.png)
 
@@ -69,7 +69,7 @@ Now, let's use GitHub Desktop to download the repo we created in [1.1](#id2) ont
 
 There are numerous methods for downloading the code in an online repository, which GitHub calls "cloning." They are covered in [GitHub’s documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-This tutorial will demonstrate how to use GitHub Desktop (which we installed in step [1.2](#id3)) to download clone the repository (which we created in step [1.1](#id2)).
+This tutorial will demonstrate how to use GitHub Desktop (which we installed in step [1.2](#id3)) to clone the repository (which we created in step [1.1](#id2)).
 
 In the GitHub Desktop app, click the "Add" button, and then select the "Clone Repository" option.
 
@@ -98,7 +98,7 @@ Next we’ll install a Python web scraper and start downloading data.
 
 ## Advanced Git (Optional)
 
-While there are numerous ways to interact with your repository on GitHub, advanced users generally use the command line for managing their files — also known pulling and pushing code — between their local machines and the remote repository on GitHub for more control.
+While there are numerous ways to interact with your repository on GitHub, advanced users generally use the command line for managing their files — also known as pulling and pushing code — between their local machines and the remote repository on GitHub for more control.
 
 This **optional** section will demonstrate how to use the [`gh`](https://cli.github.com/) command-line utility to accomplish what we did in step [1.3](#id4). If you don't have it installed, visit [cli.github.com](https://cli.github.com/) and follow the instructions there.
 

@@ -17,7 +17,7 @@ Click the pencil icon on top of the file to edit it.
 
 We will add commands to this file to ask GitHub to save the results of the scraper. 
 
-We will accomplish this by instructing the Action to `add`, `commit` and `push` changes after the scraper runs, so they will show up in our respository. This is very similar to the commands you would write to push local changes on your computer to GitHub, either using GitHub Desktop or the command line.
+We will accomplish this by instructing the Action to `add`, `commit` and `push` changes after the scraper runs, so they will show up in our repository. This is very similar to the commands you would write to push local changes on your computer to GitHub, either using GitHub Desktop or the command line.
 
 
 ```{code-block} bash
@@ -78,7 +78,7 @@ Now, you should be able to run the Action, and the virtual machine that runs you
 
 ## Run the Action
 
-Navigate back to your respository on GitHub, and once again, click on the "Actions" tab. Then click on "Scrape" under "All workflows" and run the workflow. 
+Navigate back to your repository on GitHub, and once again, click on the "Actions" tab. Then click on "Scrape" under "All workflows" and run the workflow.
 
 ![github action succeed and log](./_static/actions-save-and-log.png)
 
@@ -112,7 +112,7 @@ If the site you want to scrape updates sporadically, having nothing new to commi
 
 ## Add an action from Github Marketplace
 
-We can easily change few lines in our code to make sure an action succeeds regardless of an actual commit. However, common actions used in workflows can be found in the Github Actions [Marketplace](https://github.com/marketplace?type=actions). These actions have more options that will be useful for us later on.
+We can easily change a few lines in our code to make sure an action succeeds regardless of an actual commit. However, common actions used in workflows can be found in the Github Actions [Marketplace](https://github.com/marketplace?type=actions). These actions have more options that will be useful for us later on.
 
 Let's use [this](https://github.com/marketplace/actions/add-commit) Github Action to add and commit our work. 
 
@@ -134,7 +134,7 @@ Go to your actions file and replace the `Add and commit` section with the follow
 
 Run the action one more time and make sure the issue is fixed. 
 
-![github action sucess](./_static/commit4-copy.png)
+![github action success](./_static/commit4-copy.png)
 
 Great! Now your scraper is 🌟automated🌟. You will receive an email associated with your GitHub account if the action fails for whatever reason. We can "set it and forget it," but it's likely that you want to know when data is updated. In the next chapter we will go over how to integrate Slack into your actions file for customized alerts. 
 
