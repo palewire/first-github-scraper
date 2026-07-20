@@ -176,11 +176,11 @@ git config --global user.name "your name"
 Then run the `commit` command above again.
 ````
 
-The final step is to syncronize the changes we’ve made on our computer with the copy of the repository hosted on Github. This is done via the [`push`](https://git-scm.com/docs/git-push) tool. This complicated `git` command requires two inputs.
+The final step is to synchronize the changes we’ve made on our computer with the copy of the repository hosted on Github. This is done via the [`push`](https://git-scm.com/docs/git-push) tool. This complicated `git` command requires two inputs.
 
 First, the command asks for the name of the remote repository where you’d like to send your changes. In the parlance of `git`, the default name is `origin`.
 
-Second, you need to provide the [branch](https://en.wikipedia.org/wiki/Branching_(version_control)) of the code you’d like to syncronize. Branching is a tool for maintaining parallel versions of your code within the same respository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
+Second, you need to provide the [branch](https://en.wikipedia.org/wiki/Branching_(version_control)) of the code you’d like to synchronize. Branching is a tool for maintaining parallel versions of your code within the same repository. We won't get that sophisticated in this tutorial, so you can stick to the default code branch, which is called `main`.
 
 Taking all that into account, the command to push local changes to GitHub is typically the following. Try it. 
 
