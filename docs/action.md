@@ -418,7 +418,7 @@ The `uses` keyword specifies which version of the `actions/checkout` action to r
 The `run` keyword tells the job to execute a command on the runner.
 
 ```{note}
-For those who are running scraper notebooks on Collab or Jupyter Lab Desktop apps see below. If you are using your scraper locally with pipenv skip to next section
+For those who are running scraper notebooks on Collab or Jupyter Lab Desktop apps see below. If you are using your scraper locally with uv skip to next section
 ```
 
 Remember the imports for the scraper, your actions file will need to direct Github Actions to install them. 
@@ -505,7 +505,7 @@ Congratulations, you’ve run a scraper in the cloud.
 
 One problem: While GitHub was able to execute our scraper, we haven’t told it to commit the results back to the repository. The data you gathered isn't being saved anywhere. Yet.
 
-## Optional: Customize workflow (Advanced, with `pipenv`)
+## Optional: Customize workflow (Advanced, with `uv`)
 
 <!-- ## Pull the workflow from GitHub
 
@@ -523,7 +523,7 @@ CREATE A NEW BLANK WORKFLOW THIS TIME TO START WRITING NEW ACTION FILE FOR SCRAP
 -->
 
 ```{note}
-For those who are running the scraper locally with pipenv. 
+For those who are running the scraper locally with uv. 
 ```
 
 ```{code-block} yaml
@@ -540,20 +540,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install pipenv
-      run: pipx install pipenv
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
     - uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-        cache: 'pipenv'
-    - run: pipenv install --python `which python`
+        cache: 'uv'
+    - run: uv sync
 ```
 
 ```{note}
 GitHub has a detailed explanation of every keyword in the workflow on [this](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#understanding-the-workflow-file) page.
 ```
 
-Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` since we will `run` the notebook using the `pipenv jupyter execute scrape.ipynb` command. 
+Now that we have all the requirements installed, let's run the code. Let's `name` this step `Run scraper` since we will `run` the notebook using the `uv run jupyter execute scrape.ipynb` command. 
 
 ```{code-block} yaml
 :emphasize-lines: 20-21
@@ -569,13 +569,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install pipenv
-      run: pipx install pipenv
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
     - uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-        cache: 'pipenv'
-    - run: pipenv install --python `which python`
+        cache: 'uv'
+    - run: uv sync
     - name: Run scraper
-      run: pipenv run jupyter execute scrape.ipynb
+      run: uv run jupyter execute scrape.ipynb
 ```

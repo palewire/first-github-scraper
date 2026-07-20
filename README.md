@@ -7,7 +7,7 @@ Published at [palewi.re/docs/first-github-scraper/](https://palewi.re/docs/first
 Clone the repository and move into the code directory. Then install the Python dependencies.
 
 ```bash
-pipenv install
+uv sync --all-groups
 ```
 
 Start the test documentation server on your computer.

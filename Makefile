@@ -1,6 +1,8 @@
+UV := uv run
+
 .PHONY: docs
 
 
 docs:
 	rm -rf docs/_build
-	cd docs && pipenv run make livehtml
+	cd docs && uv run make livehtml
